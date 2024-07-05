@@ -1,9 +1,13 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+// props = items, setItems, handlerMenu
 export default function OptionMenu(props) {
   return (
-    <div className='border h-8 my-2 cursor-pointer hover:bg-slate-500'>
-        <li className='text-center text-xl font-semibold' key={props.index}>{props.url}</li>
-    </div>
+    <ul>
+      {
+        props.items.map ( (item, index) => (
+          <li className='h-8 border flex items-center justify-center m-2 cursor-pointer hover:bg-slate-300 hover:text-black' key={index} onClick={() => props.handlerMenu(item)}>{item}</li>
+        ))
+      }
+    </ul>
   )
 }
