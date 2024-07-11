@@ -1,17 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
 *{
     color: #BCA79D;
+    font-family: "Maven Pro", sans-serif;
 }
+
 
 .formato{
   clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
 }
 
+.tamanho-form{
+  width: 400px;
+}
+
+.green-text{
+  color: #85C680;
+}
+
+.green-bg{
+  background-color: #85C680;
+}
+
+.green-border{
+  border-color: #85C680;
+}
+
+.bg-preto{
+  background-color: #1D1D1F;
+}
+
+
 .bg-verde-escuro{
   background-color: #193D1E;
+}
+.bg-verde-claro{
+  background-color: #486D4B;
 }
 
 .bg-marrom-escuro{
@@ -22,16 +51,12 @@
   background-color: #BCA79D;
 }
 
-.boder-b-1{
-  border-bottom-width: 1px;
-}
-
 .bg-marrom-claro{
   background-color: #BCA79D;
 }
 
-.marrom-escuro {
-    color: #512C17;
+.preto-texto {
+    color: #1D1D1F;
   }
   
   .marrom-claro {
@@ -52,6 +77,6 @@
 
 .card {
   width: 250px;
-  height: 348px;
+  height: 380px;
 }
   

@@ -21,11 +21,11 @@ export default function DeckDetails() {
 
   return (
     <div className='w-full min-h-screen flex justify-center bg-slate-900'>
-            <div className='w-3/4 border min-h-44 flex justify-center'>
+            <div className='w-3/4 min-h-44 flex justify-center'>
                 <CardMenu deckItems={deckItems} handlerCard={handlerCard}></CardMenu>
             </div>
 
-            <div className=' w-2/6 min-h-44 border px-4'>
+            <div className=' w-2/6 min-h-44 px-4'>
                 <OptionMenu items={items} handlerMenu={handlerMenu}></OptionMenu>
             </div>
             

@@ -2,35 +2,37 @@ import React from 'react'
 
 function Home() {
   return (
-    <div className=' bg-marrom-escuro w-full min-h-screen flex justify-center items-center'>
-     
-      <div className='container flex justify-center'>
+    <div className="bg-[url('./midias/bg_login.jpeg')] bg-cover bg-center bg-no-repeat h-screen flex items-center justify-center">
+      <form action="post" className='tamanho-form shadow-md min-h-80 bg-preto px-8'>
+        <h1 className='text-2xl font-bold w-full text-center pt-2 pb-6 text-white'>Login</h1>
 
-        <form className='bg-marrom-claro p-2 sm:w-3/4 lg:w-1/2 shadow rounded-sm'>
+        <div className='flex flex-wrap w-full justify-center items-center'>
+          <label className='w-full p-2 text-2xl green-text' htmlFor='email'>Email</label>
+          <input type='email' placeholder='Digite o seu email aqui' 
+          className='w-full bg-transparent px-3 focus:outline-none border-b green-border placeholder-gray-600
+          text-white' 
+          id='email'></input>
+        </div>
 
-          <h1 className='text-center text-2xl font-bold marrom-escuro'>LOGIN</h1>
+        <div className='flex flex-wrap w-full justify-center items-center pt-6'>
+          <label className='w-full p-2 text-2xl green-text' htmlFor='senha'>Senha</label>
+          <input type='password' placeholder='Digite a sua senha aqui' 
+          className='w-full bg-transparent px-3 focus:outline-none border-b green-border placeholder-gray-600
+          text-white' 
+          id='senha'></input>
+        </div>
 
-            <div className='flex flex-wrap'>
-              <label htmlFor="email" className='marrom-escuro w-full font-semibold'>Email</label>
-              <input type="email" name="email" id="email" className='w-full bg-marrom-claro marrom-escuro border-b border-slate-900 focus:outline-none pl-2 placeholder-orange-950 placeholder-opacity-55' placeholder='Insira o seu email'/>
-            </div>
+        <div className='flex flex-wrap mt-6'>
+          <span className='text-white text-xs font-bold w-full mb-1 hover:underline cursor-pointer'>Não é cadastrado? Clique aqui</span>
+          <span className='text-white text-xs hover:underline cursor-pointer'>Esqueci minha senha</span>
+        </div>
 
-            <div className='flex flex-wrap mt-6'>
-              <label htmlFor="password" className='marrom-escuro w-full font-semibold'>Senha</label>
-              <input type="password" name="password" id="password" className='w-full bg-marrom-claro marrom-escuro border-b border-slate-900 focus:outline-none pl-2 placeholder-orange-950 placeholder-opacity-55' 
-              placeholder='Insira a sua senha'/>
-            </div>
+        <div className='mt-8 w-full green-bg flex justify-center mb-6 hover:bg-green-900 cursor-pointer shadow-sm'>
+          <p className='text-4xl preto-texto font-bold'>→</p>
+        </div>
 
-            <p className='marrom-escuro text-sm mt-4 ml-2 hover:underline cursor-pointer'>Esqueceu sua senha?</p>
-            <p className='marrom-escuro text-sm ml-2 hover:underline cursor-pointer'>Cadastre-se</p>
 
-            <div className='w-full flex justify-center my-8'>
-              <div className='w-3/4 text-4xl text-center bg-verde-escuro text-white cursor-pointer'>→</div>
-              </div>
-        </form>
-
-      </div>
-
+      </form>
     </div>
   )
 }
