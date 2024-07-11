@@ -6,7 +6,7 @@
 
 
 *{
-    color: #BCA79D;
+    color: #ffffff;
     font-family: "Maven Pro", sans-serif;
 }
 
@@ -17,6 +17,11 @@
 
 .tamanho-form{
   width: 400px;
+}
+
+.card-menu{
+  width: 220px;
+  height: 350px;
 }
 
 .green-text{
