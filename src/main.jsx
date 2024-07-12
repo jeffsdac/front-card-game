@@ -10,6 +10,7 @@ import Home from './routes/Home.jsx'
 import MenuInicial from './routes/MenuInicial.jsx'
 import MenuDecks from './routes/MenuDecks.jsx';
 import DeckDetails from './routes/DeckDetails.jsx';
+import RegistrarUsuario from './routes/RegistrarUsuario.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,12 +22,12 @@ const router = createBrowserRouter([
     element: <MenuInicial/>
   },
   {
-    path:"decks",
-    element:<MenuDecks/>
-  },
-  {
     path:"deckdetail",
     element:<DeckDetails/>
+  },
+  {
+    path:"registrar",
+    element:<RegistrarUsuario/>
   }
 ])
 
