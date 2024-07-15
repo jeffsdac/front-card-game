@@ -33,7 +33,7 @@ const loginUser = async function (username, password) {
 
     request.body = JSON.stringify(dtoLogin);
 
-    return fetch( url, request ).then( resp => resp.json() ); 
+    return fetch( url, request ); 
 
 }
 

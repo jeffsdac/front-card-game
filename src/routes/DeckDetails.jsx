@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import OptionMenu from '../Components/OptionMenu'
-import CardMenu from '../Components/CardMenu';
 import Card from '../Components/Card';
 
 export default function DeckDetails() {

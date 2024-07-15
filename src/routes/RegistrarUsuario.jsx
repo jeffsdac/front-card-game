@@ -47,10 +47,6 @@ const RegistrarUsuario = () => {
         setResponse(data);
     }
 
-    const toastTest = () =>{
-        toast("Usuário cadastrado com sucesso!");
-    }
-
     return (
         <div className="bg-[url('./midias/bg_login.jpeg')] bg-cover bg-center bg-no-repeat min-h-screen flex justify-center items-center">
             <form action="post" className='tamanho-form shadow-md min-h-80 bg-preto px-8'>

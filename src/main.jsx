@@ -14,6 +14,7 @@ import MenuInicial from './routes/MenuInicial.jsx'
 import MenuDecks from './routes/MenuDecks.jsx';
 import DeckDetails from './routes/DeckDetails.jsx';
 import RegistrarUsuario from './routes/RegistrarUsuario.jsx';
+import { AuthProvider } from './Context/AuthContext.jsx';
 
 const router = createBrowserRouter([
   {
@@ -36,19 +37,21 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
-    <ToastContainer
-      position="bottom-right"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="dark"
-      transition: Bounce
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition: Bounce
       />
+    </AuthProvider>
   </React.StrictMode>,
 )

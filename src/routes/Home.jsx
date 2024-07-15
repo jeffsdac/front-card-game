@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import UserService from '../Services/UserService';
 import { Link, useNavigate } from 'react-router-dom';
+import {AuthContext} from '../Context/AuthContext'
 
 function Home() {
 
@@ -8,8 +9,8 @@ function Home() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const [token, setToken] = useState("");
+  
+  const {token, setToken} = useContext(AuthContext);
 
   const handlerLogin = async () => {
     UserService.loginUser(username, password)
