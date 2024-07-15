@@ -40,7 +40,6 @@ const RegistrarUsuario = () => {
 
     const formHandler = async () => {
         const resp = await userService.registerUser(email, password, fullName, nickname);
-        setCode(resp.status);
         const data = await resp.json();
 
         setCode(resp.status);
