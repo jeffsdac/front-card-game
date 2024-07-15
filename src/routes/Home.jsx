@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import UserService from '../Services/UserService';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Home() {
+
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,8 +15,10 @@ function Home() {
     UserService.loginUser(username, password)
     .then( body => {
       setToken(body.acessToken)
+      if (token != "") { navigate("inicio") }
     })
   }
+  
 
   return (
     <div className="bg-[url('./midias/bg_login.jpeg')] bg-cover bg-center bg-no-repeat h-screen flex items-center justify-center">
@@ -25,7 +30,7 @@ function Home() {
           <input type='text' placeholder='Digite o seu username aqui' 
           className='w-full bg-transparent px-3 focus:outline-none border-b green-border placeholder-gray-600
           text-white' 
-          id='email'
+          id='username'
           value={username}
           onChange={ input => setUsername(input.target.value) }></input>
         </div>
@@ -41,7 +46,7 @@ function Home() {
         </div>
 
         <div className='flex flex-wrap mt-6'>
-          <span className='text-white text-xs font-bold w-full mb-1 hover:underline cursor-pointer'>Não é cadastrado? Clique aqui</span>
+          <span className='text-white text-xs font-bold w-full mb-1 hover:underline cursor-pointer'><Link to="registrar">Não é cadastrado? Clique aqui</Link></span>
           <span className='text-white text-xs hover:underline cursor-pointer'>Esqueci minha senha</span>
         </div>
 

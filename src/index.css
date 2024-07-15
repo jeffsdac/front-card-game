@@ -10,6 +10,11 @@
     font-family: "Maven Pro", sans-serif;
 }
 
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #1d1d1f inset;
+  -webkit-text-fill-color: #ffffff;
+}
+
 
 .formato{
   clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);

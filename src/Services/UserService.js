@@ -1,4 +1,4 @@
-const BASER_URL = "http://localhost:8080/api/user";
+const BASE_URL = "http://localhost:8080/api/user";
 
 const requestObj = {
     method:"POST",
@@ -9,22 +9,22 @@ const requestObj = {
 }
 
 const registerUser = async function (email, password, fullname, username) {
-    const url = `${BASER_URL}/register`;
+    const url = `${BASE_URL}/register`;
     const request = requestObj;
     const userRegisterDto = {
         email: email,
         password: password,
-        fullname: fullname,
+        fullName: fullname,
         username: username
     }
 
     request.body = JSON.stringify(userRegisterDto);
 
-    return fetch(url, request).then( resp => resp.json() );
+    return fetch(url, request);
 }
 
 const loginUser = async function (username, password) {
-    const url = `${BASER_URL}/login`;
+    const url = `${BASE_URL}/login`;
     const request = requestObj;
     const dtoLogin = {
         username: username,
