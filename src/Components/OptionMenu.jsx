@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
-// props = items, setItems, handlerMenu
-export default function OptionMenu(props) {
+export default function OptionMenu({setCards, setSelectedCards, cards, selectedCards}) {
+  
+  const handlerOption = (content) => {
+    setSelectedCards(selectedCards.filter(card => card !== content));
+    setCards([...cards, content]);
+  };
+  
   return (
-    <ul className='w-full'>
-      <h2 className='text-center text-xl mb-2 green-text font-semibold '>Deck atual</h2>
-      <li className='text-center border hover:bg-slate-50 hover:text-black cursor-pointer m-2'>Card 1</li>
-      <li className='text-center border hover:bg-slate-50 hover:text-black cursor-pointer m-2'>Card 1</li>
-      <li className='text-center border hover:bg-slate-50 hover:text-black cursor-pointer m-2'>Card 1</li>
-      <li className='text-center border hover:bg-slate-50 hover:text-black cursor-pointer m-2'>Card 1</li>
-      <li className='text-center border hover:bg-slate-50 hover:text-black cursor-pointer m-2'>Card 1</li>
-      <li className='text-center border hover:bg-slate-50 hover:text-black cursor-pointer m-2'>Card 1</li>
-      <li className='text-center border hover:bg-slate-50 hover:text-black cursor-pointer m-2'>Card 1</li>
-      <li className='text-center border hover:bg-slate-50 hover:text-black cursor-pointer m-2'>Card 1</li>
-      <li className='text-center border hover:bg-slate-50 hover:text-black cursor-pointer m-2'>Card 1</li>
+    <ul className='w-full flex-wrap bg-slate-600 p-2 min-h-screen'>
+      <h2 className='text-center text-2xl mb-2 green-text font-semibold w-full'>Deck atual</h2>
+      {
+        selectedCards.map( (content, key) => (
+          <li key={key} className=' w-full my-2 text-center bg-gray-950 hover:bg-slate-400 cursor-pointer p-2 green-text font-semibold text-s' onClick={ () => handlerOption(content)}>{content}</li>
+        ))
+      }
     </ul>
   )
 }

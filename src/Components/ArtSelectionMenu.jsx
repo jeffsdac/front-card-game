@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import ArtComponent from './ArtComponent';
+import { useNavigate } from 'react-router-dom';
 
 
 const ArtSelectionMenu = ({toggleActive}) => {
-    const [imageData, setImageData] = useState([1,2,3,4,5])
+    const [imageData, setImageData] = useState([1,2,3,4,5]);
     const [selectedId, setSelectedId] = useState(5);
+
+    const navigate = useNavigate();
 
 
 
@@ -19,7 +22,7 @@ const ArtSelectionMenu = ({toggleActive}) => {
                     setSelectedId={setSelectedId}></ArtComponent>
                 ))
             }
-            <div className='h-50 bg-green-500 cursor-pointer hover:bg-slate-600 w-full p-2 txt-lg text-center font-bold shadow-sm' onClick={toggleActive}>Salvar arte</div>
+            <div className='h-50 bg-green-500 cursor-pointer hover:bg-slate-600 w-full p-2 txt-lg text-center font-bold shadow-sm' onClick={() => navigate("/deckdetail")}>Salvar arte</div>
 
 
 
