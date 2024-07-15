@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from '../Components/Card'
+import ArtSelectionMenu from '../Components/ArtSelectionMenu';
 
 function MenuInicial() {
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleActive = () =>{
+    setIsActive( isActive ? false : true);
+  };
+  
   return (
     
 
     <div className=" bg-[url('./midias/bg_login.jpeg')] bg-cover bg-center bg-no-repeat min-h-screen flex justify-center items-center">
+      {
+        isActive &&
+        <ArtSelectionMenu toggleActive={toggleActive}/>
+      }
         
         <div className='sm:w-full sm:mx-2 md:w-3/4 bg-preto min-h-screen p-4'>
           <h1 className='text-2xl font-bold text-center mb-4 green-text'>Seus decks</h1>
@@ -17,10 +28,10 @@ function MenuInicial() {
             <li className='mb-1'> <span className='text-red-600 font-bold'>IMPORTANTE:</span> não esqueça de salvar seu Deck após selecionar todas as cartas que deseja.</li>
           </ul>
           <div className='w-full flex justify-evenly flex-wrap'>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
-            <Card></Card>
+            <Card toggleActive={toggleActive}></Card>
+            <Card toggleActive={toggleActive}></Card>
+            <Card toggleActive={toggleActive}></Card>
+            <Card toggleActive={toggleActive}></Card>
           </div>
         </div>
 

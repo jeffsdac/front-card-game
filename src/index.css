@@ -28,6 +28,10 @@ input:-webkit-autofill {
   width: 220px;
   height: 350px;
 }
+.img-menu{
+  width: 215px;
+  height: 345px;
+}
 
 .green-text{
   color: #85C680;
