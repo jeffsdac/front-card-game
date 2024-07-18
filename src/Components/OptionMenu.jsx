@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 export default function OptionMenu({setCards, setSelectedCards, cards, selectedCards}) {
   
   const handlerOption = (content) => {

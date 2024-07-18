@@ -1,13 +1,31 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Card from '../Components/Card'
 import ArtSelectionMenu from '../Components/ArtSelectionMenu';
-
+import {AuthContext} from '../Context/AuthContext'
+import findDeckByUsername from '../Services/DeckService';
 function MenuInicial() {
+
+  const {user} = useContext(AuthContext);
+
+  const [usuarioAtual, setUsuarioAtual] = useState(user)
+
   const [isActive, setIsActive] = useState(false);
+
+  const [bodyResponse, setBodyResponse] = useState([]);
 
   const toggleActive = () =>{
     setIsActive( isActive ? false : true);
   };
+
+  const getDecks = async () => {
+    const resp = await findDeckByUsername(usuarioAtual);
+    const body = await resp.json();
+    setBodyResponse(body);
+  }
+
+  useEffect ( () => {
+    getDecks();
+  }, [] ) 
   
   return (
     
@@ -28,10 +46,11 @@ function MenuInicial() {
             <li className='mb-1'> <span className='text-red-600 font-bold'>IMPORTANTE:</span> não esqueça de salvar seu Deck após selecionar todas as cartas que deseja.</li>
           </ul>
           <div className='w-full flex justify-evenly flex-wrap'>
-            <Card toggleActive={toggleActive}></Card>
-            <Card toggleActive={toggleActive}></Card>
-            <Card toggleActive={toggleActive}></Card>
-            <Card toggleActive={toggleActive}></Card>
+              {
+                bodyResponse.map ( (specs, key) =>  (
+                  <Card toggleActive={toggleActive} key={key} specs={specs} ></Card>
+                )) 
+              }
           </div>
         </div>
 
