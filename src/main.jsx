@@ -15,6 +15,7 @@ import MenuInicial from './routes/MenuInicial.jsx'
 import DeckDetails from './routes/DeckDetails.jsx';
 import RegistrarUsuario from './routes/RegistrarUsuario.jsx';
 import { AuthProvider } from './Context/AuthContext.jsx';
+import UploadPhoto from './routes/UploadPhoto.jsx';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path:"registrar",
     element:<RegistrarUsuario/>
+  },
+  {
+    path:"photo-post",
+    element: <UploadPhoto/>
   }
 ])
 
