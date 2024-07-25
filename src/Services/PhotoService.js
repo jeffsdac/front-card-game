@@ -22,4 +22,11 @@ const uploadArt = async (base64img, extension) => {
     return fetch(url, requestObj)
 }
 
-export default {uploadArt};
+const getArtById = async (id) => {
+    const url = `${BASE_URL}/${id}`
+    console.log(url)
+
+    return fetch(url);
+}
+
+export default {uploadArt, getArtById};
