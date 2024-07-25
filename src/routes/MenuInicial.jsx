@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Card from '../Components/Card'
 import ArtSelectionMenu from '../Components/ArtSelectionMenu';
+import {AuthContext} from '../Context/AuthContext'
 
 function MenuInicial() {
   const [isActive, setIsActive] = useState(false);
+
+  const {token, setToken, user, setUser } = useContext(AuthContext);
 
   const toggleActive = () =>{
     setIsActive( isActive ? false : true);

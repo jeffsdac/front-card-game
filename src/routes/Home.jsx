@@ -17,13 +17,14 @@ function Home() {
 
 
   
-  const {token, setToken} = useContext(AuthContext);
+  const {token, setToken, user, setUser } = useContext(AuthContext);
 
   useEffect ( () => {
     console.log(codeResponse);
     if (codeResponse === 200){
       navigate("inicio")
       setToken(responseBody.acessToken);
+      setUser(username);
     }
     if (codeResponse === 401){
       setIsIncorrect(true);
