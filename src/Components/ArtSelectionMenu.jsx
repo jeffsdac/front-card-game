@@ -7,6 +7,8 @@ const ArtSelectionMenu = ({toggleActive}) => {
     const [imageData, setImageData] = useState([1,2,3,4,5]);
     const [selectedId, setSelectedId] = useState(5);
 
+    const[deckName, setDeckName] = useState();
+
     const navigate = useNavigate();
 
 
@@ -22,6 +24,15 @@ const ArtSelectionMenu = ({toggleActive}) => {
                     setSelectedId={setSelectedId}></ArtComponent>
                 ))
             }
+                <div className='flex flex-wrap w-2/4 justify-center items-center py-8'>
+                    <label className='w-full p-2 text-2xl green-text' htmlFor='username'>Nome do seu Deck</label>
+                    <input type='text' placeholder='Digite o seu username aqui' 
+                    className='w-full bg-transparent px-3 focus:outline-none border-b green-border placeholder-gray-600
+                    text-white' 
+                    id='username'
+                    value={deckName}
+                    onChange={ input => setDeckName(input.target.value) }></input>
+                </div>  
             <div className='h-50 bg-green-500 cursor-pointer hover:bg-slate-600 w-full p-2 txt-lg text-center font-bold shadow-sm' onClick={() => navigate("/deckdetail")}>Salvar arte</div>
 
 
