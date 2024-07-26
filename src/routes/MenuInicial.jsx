@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Card from '../Components/Card'
 import ArtSelectionMenu from '../Components/ArtSelectionMenu';
 import {AuthContext} from '../Context/AuthContext'
@@ -6,7 +6,20 @@ import {AuthContext} from '../Context/AuthContext'
 function MenuInicial() {
   const [isActive, setIsActive] = useState(false);
 
+  const [decksData, setDecksData] = useState([]);
+
   const {token, setToken, user, setUser } = useContext(AuthContext);
+
+  useEffect( () => {
+    console.log("get decks com user: " + user)
+    const getByUsername = async () => {
+      const resp = await fetch (`http://localhost:8080/api/deck/user/${user}`);
+      const body = await resp.json();
+      setDecksData(body);
+    }
+
+    getByUsername();
+  }, [] ) 
 
   const toggleActive = () =>{
     setIsActive( isActive ? false : true);
@@ -31,10 +44,11 @@ function MenuInicial() {
             <li className='mb-1'> <span className='text-red-600 font-bold'>IMPORTANTE:</span> não esqueça de salvar seu Deck após selecionar todas as cartas que deseja.</li>
           </ul>
           <div className='w-full flex justify-evenly flex-wrap'>
-            <Card toggleActive={toggleActive}></Card>
-            <Card toggleActive={toggleActive}></Card>
-            <Card toggleActive={toggleActive}></Card>
-            <Card toggleActive={toggleActive}></Card>
+            {
+              decksData.map ( (element, key) => (
+                <Card element={element}/>
+              ))
+            }
           </div>
         </div>
 

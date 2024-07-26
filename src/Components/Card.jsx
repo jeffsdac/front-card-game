@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Card = ({toggleActive}) => {
+const Card = ({element}) => {
+
+  const[strImg, setStrImg] = useState('');
+
+  useEffect ( () => {
+    const img = `data:image/${element.imgType};base64,${element.image64}`;
+    setStrImg(img);
+  }, [] )
 
     return (
-        <div className=" shadow-md card-menu border flex items-center justify-center hover:bg-slate-500 cursor-pointer m-2 green-border"
-        onClick={toggleActive}>
-          <span className='text-4xl font-bold text-white green-text'>+</span>
+        <div className="hover:border cursor-pointer ">
+          <img src={strImg} alt="" className='w-48 h-80'/>
+          <p className='text-center text-xl font-bold bg-slate-600'>{element.name}</p>
         </div>
     );
 }
