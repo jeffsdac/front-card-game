@@ -8,21 +8,27 @@ const requestObj = {
     }
 }
 
-// {
-//     "userId": 0,
-//     "name": "string",
-//     "imageId": 0
-// }
 
 const registerByUsername = (username, deckName, imageId) => {
     const url = `${BASE_URL}/register`;
-    const request = requestObj;
+    
+    const request = {
+        method:"POST",
+        body: "",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    }
+
     const body = {
         "username": username,
         "name": deckName,
         "imageId": imageId
     }
+
     request.body = JSON.stringify(body);
+
+    console.log(request.body);
     return fetch (url, request);
 }
 

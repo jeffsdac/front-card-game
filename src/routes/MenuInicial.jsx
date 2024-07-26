@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Card from '../Components/Card'
 import ArtSelectionMenu from '../Components/ArtSelectionMenu';
 import {AuthContext} from '../Context/AuthContext'
+import AddCard from '../Components/AddCard';
 
 function MenuInicial() {
   const [isActive, setIsActive] = useState(false);
@@ -44,11 +45,13 @@ function MenuInicial() {
             <li className='mb-1'> <span className='text-red-600 font-bold'>IMPORTANTE:</span> não esqueça de salvar seu Deck após selecionar todas as cartas que deseja.</li>
           </ul>
           <div className='w-full flex justify-evenly flex-wrap'>
+            
             {
               decksData.map ( (element, key) => (
-                <Card element={element}/>
+                <Card element={element} key={key}/>
               ))
             }
+            <AddCard toggleActive={toggleActive}/>
           </div>
         </div>
 
