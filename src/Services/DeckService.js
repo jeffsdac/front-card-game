@@ -9,16 +9,21 @@ const requestObj = {
 }
 
 
+
+const removeById = (deckId) => {
+    const url = `${BASE_URL}/${deckId}`
+    const request = {
+        method:"DELETE"
+    }
+
+    return fetch(url, request);
+}
+
+
 const registerByUsername = (username, deckName, imageId) => {
     const url = `${BASE_URL}/register`;
     
-    const request = {
-        method:"POST",
-        body: "",
-        headers: {
-            "Content-Type": "application/json",
-        }
-    }
+    const request = requestObj;
 
     const body = {
         "username": username,
@@ -32,4 +37,4 @@ const registerByUsername = (username, deckName, imageId) => {
     return fetch (url, request);
 }
 
-export default {registerByUsername};
+export default {registerByUsername, removeById};

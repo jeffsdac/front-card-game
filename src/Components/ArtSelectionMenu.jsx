@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react';
 import ArtComponent from './ArtComponent';
-import { useNavigate } from 'react-router-dom';
 import DeckService from '../Services/DeckService.js'
 import { AuthContext } from '../Context/AuthContext.jsx';
 
 
-const ArtSelectionMenu = ({toggleActive}) => {
+const ArtSelectionMenu = ({toggleActive, setAttPage}) => {
 
     const {token, user } = useContext(AuthContext);
 
@@ -14,15 +13,12 @@ const ArtSelectionMenu = ({toggleActive}) => {
     const [username, setUSername] = useState(user);
     const[deckName, setDeckName] = useState("");
 
-
-    const navigate = useNavigate();
-
     const handleDeckRegister = async () => {
         const resp = await DeckService.registerByUsername(username, deckName, selectedId);
         const body = await resp.json();
 
-        console.log(resp.status);
-        console.log(body);
+        setAttPage(true);
+        toggleActive();
     }
 
 

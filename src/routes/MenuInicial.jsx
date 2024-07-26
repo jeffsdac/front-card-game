@@ -3,11 +3,17 @@ import Card from '../Components/Card'
 import ArtSelectionMenu from '../Components/ArtSelectionMenu';
 import {AuthContext} from '../Context/AuthContext'
 import AddCard from '../Components/AddCard';
+import DeckService from '../Services/DeckService.js'
 
 function MenuInicial() {
   const [isActive, setIsActive] = useState(false);
+  const [attPage, setAttPage] = useState(false);
 
   const [decksData, setDecksData] = useState([]);
+  const [selecionado, setSelecionado] = useState(-1);
+  const styleSelectedRemove = 'w-full bg-red-600 my-2 text-2xl text-center font-bold cursor-pointer hover:bg-red-900';
+  const styleSelectedEdit = 'w-full bg-green-600 my-2 text-2xl text-center font-bold cursor-pointer hover:bg-green-900';
+  const styleNotSelected =  'w-full bg-gray-600 my-2 text-2xl text-center font-bold';
 
   const {token, setToken, user, setUser } = useContext(AuthContext);
 
@@ -20,11 +26,18 @@ function MenuInicial() {
     }
 
     getByUsername();
-  }, [] ) 
+    setAttPage(false);
+  }, [attPage] ) 
 
   const toggleActive = () =>{
     setIsActive( isActive ? false : true);
   };
+
+  const handleRemove = async () => {
+    const resp = await DeckService.removeById(selecionado);
+    setAttPage(true)
+    console.log(resp.status);
+  }
   
   return (
     
@@ -32,7 +45,7 @@ function MenuInicial() {
     <div className=" bg-[url('./midias/bg_login.jpeg')] bg-cover bg-center bg-no-repeat min-h-screen flex justify-center items-center">
       {
         isActive &&
-        <ArtSelectionMenu toggleActive={toggleActive}/>
+        <ArtSelectionMenu toggleActive={toggleActive} setAttPage={setAttPage}/>
       }
         
         <div className='sm:w-full sm:mx-2 md:w-3/4 bg-preto min-h-screen p-4'>
@@ -44,15 +57,22 @@ function MenuInicial() {
             <li className='mb-1'>Após isso você será redirecionado ao menu de seleção de cartas, dentro desse menu basta você clicar na carta selecionada e ela irá aparecer no menu a direita.</li>
             <li className='mb-1'> <span className='text-red-600 font-bold'>IMPORTANTE:</span> não esqueça de salvar seu Deck após selecionar todas as cartas que deseja.</li>
           </ul>
+
+
           <div className='w-full flex justify-evenly flex-wrap'>
             
             {
               decksData.map ( (element, key) => (
-                <Card element={element} key={key}/>
+                <Card element={element} key={key} selecionado={selecionado} 
+                setSelecionado={setSelecionado}/>
               ))
             }
             <AddCard toggleActive={toggleActive}/>
           </div>
+          <div className={selecionado == -1 ?  styleNotSelected : styleSelectedRemove}
+          onClick={handleRemove}>REMOVE DECK</div>
+
+          <div className={selecionado == -1 ?  styleNotSelected : styleSelectedEdit}>EDIT DECK</div>
         </div>
 
     </div>
