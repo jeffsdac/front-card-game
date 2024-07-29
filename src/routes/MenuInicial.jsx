@@ -4,10 +4,12 @@ import ArtSelectionMenu from '../Components/ArtSelectionMenu';
 import {AuthContext} from '../Context/AuthContext'
 import AddCard from '../Components/AddCard';
 import DeckService from '../Services/DeckService.js'
+import EditDeck from '../Components/EditDeck.jsx';
 
 function MenuInicial() {
   const [isActive, setIsActive] = useState(false);
   const [attPage, setAttPage] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   const [decksData, setDecksData] = useState([]);
   const [selecionado, setSelecionado] = useState(-1);
@@ -33,6 +35,10 @@ function MenuInicial() {
     setIsActive( isActive ? false : true);
   };
 
+  const toggleEdit = () => {
+    setIsEdit ( isEdit ? false : true );
+  }
+
   const handleRemove = async () => {
     const resp = await DeckService.removeById(selecionado);
     setAttPage(true)
@@ -47,9 +53,14 @@ function MenuInicial() {
         isActive &&
         <ArtSelectionMenu toggleActive={toggleActive} setAttPage={setAttPage}/>
       }
+      {
+        isEdit &&
+        <EditDeck toggleEdit={toggleEdit} deck={ decksData.find( deck => deck.id == selecionado ) }
+        setAttPage={setAttPage}/>
+      }
         
         <div className='sm:w-full sm:mx-2 md:w-3/4 bg-preto min-h-screen p-4'>
-          <h1 className='text-2xl font-bold text-center mb-4 green-text'>Seus decks</h1>
+          <h1 className='text-2xl font-bold text-center mb-4 green-text'>Seus Decks</h1>
           <p className='mb-4 text-xl font-semibold'>Aqui é onde você irá montar seus primeiros Decks, o passo a passo é bem simples: </p>
           <ul className='list-disc px-4 mb-8'>
             <li className='mb-1'>Clique no ícone de + ou no quadrado abaixo.</li>
@@ -72,7 +83,8 @@ function MenuInicial() {
           <div className={selecionado == -1 ?  styleNotSelected : styleSelectedRemove}
           onClick={handleRemove}>REMOVE DECK</div>
 
-          <div className={selecionado == -1 ?  styleNotSelected : styleSelectedEdit}>EDIT DECK</div>
+          <div className={selecionado == -1 ?  styleNotSelected : styleSelectedEdit}
+          onClick={toggleEdit}>EDIT DECK</div>
         </div>
 
     </div>

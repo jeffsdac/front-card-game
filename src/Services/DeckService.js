@@ -37,4 +37,19 @@ const registerByUsername = (username, deckName, imageId) => {
     return fetch (url, request);
 }
 
-export default {registerByUsername, removeById};
+const updateById = async (id, imageId, deckName) => {
+    const url = `${BASE_URL}/${id}`;
+
+    const dto = {
+        "imageId": imageId,
+        "deckName": deckName
+    }
+    
+    const request = requestObj;
+    request.method="PATCH";
+    request.body = JSON.stringify(dto);
+
+    return fetch(url, request);
+}
+
+export default {registerByUsername, removeById, updateById};
