@@ -56,7 +56,7 @@ function MenuInicial() {
       {
         isEdit &&
         <EditDeck toggleEdit={toggleEdit} deck={ decksData.find( deck => deck.id == selecionado ) }
-        setAttPage={setAttPage}/>
+        setAttPage={setAttPage} setSelecionado={setSelecionado} setDecksData={setDecksData}/>
       }
         
         <div className='sm:w-full sm:mx-2 md:w-3/4 bg-preto min-h-screen p-4'>
@@ -69,13 +69,13 @@ function MenuInicial() {
             <li className='mb-1'> <span className='text-red-600 font-bold'>IMPORTANTE:</span> não esqueça de salvar seu Deck após selecionar todas as cartas que deseja.</li>
           </ul>
 
-
+          <div className='w-full p-3 hover:border cursor-pointer text-center bg-blue-600 my-3 font-bold'>SEE CARDS</div>
           <div className='w-full flex justify-evenly flex-wrap'>
             
             {
               decksData.map ( (element, key) => (
                 <Card element={element} key={key} selecionado={selecionado} 
-                setSelecionado={setSelecionado}/>
+                setSelecionado={setSelecionado} attPage={attPage}/>
               ))
             }
             <AddCard toggleActive={toggleActive}/>

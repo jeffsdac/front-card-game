@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Card = ({element, setSelecionado, selecionado}) => {
+const Card = ({element, setSelecionado, selecionado, attPage}) => {
 
   const[strImg, setStrImg] = useState('');
   const [isSelected, setIsSelected] = useState(false);
@@ -12,9 +12,11 @@ const Card = ({element, setSelecionado, selecionado}) => {
   useEffect ( () => {
     const img = `data:image/${element.imgType};base64,${element.image64}`;
     setStrImg(img);
+  }, [attPage] )
 
+  useEffect ( () => {
     setIsSelected(selecionado == element.id)
-  }, [selecionado] )
+  }, [selecionado] ) 
 
     return (
         <div className="hover:border cursor-pointer my-2 relative"

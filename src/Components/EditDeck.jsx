@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ArtComponent from './ArtComponent';
 import DeckService from '../Services/DeckService';
+import { AuthContext } from '../Context/AuthContext';
 
 
-function EditDeck({toggleEdit, deck, setAttPage}) {
+function EditDeck({toggleEdit, deck, setAttPage, setDecksData}) {
 
-
+    const {token, setToken, user, setUser } = useContext(AuthContext);
     const [imageData, setImageData] = useState([1,2,4]);
     const [selectedId, setSelectedId] = useState(-1);
     const[deckName, setDeckName] = useState(deck.name);
@@ -30,19 +31,21 @@ function EditDeck({toggleEdit, deck, setAttPage}) {
         setCriacao(formatted);
       }, []);
 
-      const delay = (ms) => {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      };
+      const getByUsername = async () => {
+        const resp = await fetch (`http://localhost:8080/api/deck/user/${user}`);
+        const body = await resp.json();
+        setDecksData(body);
+      }
 
       const handleUpdate = async () => {
         const resp = await DeckService.updateById(deck.id, selectedId, deckName);
-
-        setIsLoading(true);
-        await delay(1500);
-        setIsLoading(false);
-
-        setAttPage(true);
-        toggleEdit();
+        if (resp.status === 200){
+            setIsLoading(true);
+            console.log("RESPOSTA 200 ATUALIZANDO A TELA!")
+            await getByUsername();
+            setAttPage(true);
+            setIsLoading(false);
+        }
       }
 
     return (
