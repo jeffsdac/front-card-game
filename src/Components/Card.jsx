@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../Context/AuthContext';
 
 const Card = ({element, setSelecionado, selecionado, attPage}) => {
 
   const[strImg, setStrImg] = useState('');
   const [isSelected, setIsSelected] = useState(false);
 
+  const {setDeckId } = useContext(AuthContext);
+
+
   const handlerSelcionado = () => {
-    setSelecionado(element.id)
+    setSelecionado(element.id);
+    setDeckId(element.id);
   }
+  
 
   useEffect ( () => {
     const img = `data:image/${element.imgType};base64,${element.image64}`;
@@ -26,6 +32,7 @@ const Card = ({element, setSelecionado, selecionado, attPage}) => {
           {
             isSelected && <div className='absolute w-8 h-8 -top-2 -right-2 rounded-full bg-green-600 flex items-center justify-center'>✓</div>
           }
+          <div>{element.id}</div>
         </div>
     );
 }

@@ -6,7 +6,7 @@ import { AuthContext } from '../Context/AuthContext';
 
 function EditDeck({toggleEdit, deck, setAttPage, setDecksData}) {
 
-    const {token, setToken, user, setUser } = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     const [imageData, setImageData] = useState([1,2,4]);
     const [selectedId, setSelectedId] = useState(-1);
     const[deckName, setDeckName] = useState(deck.name);
@@ -41,7 +41,6 @@ function EditDeck({toggleEdit, deck, setAttPage, setDecksData}) {
         const resp = await DeckService.updateById(deck.id, selectedId, deckName);
         if (resp.status === 200){
             setIsLoading(true);
-            console.log("RESPOSTA 200 ATUALIZANDO A TELA!")
             await getByUsername();
             setAttPage(true);
             setIsLoading(false);

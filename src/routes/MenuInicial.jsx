@@ -5,18 +5,21 @@ import {AuthContext} from '../Context/AuthContext'
 import AddCard from '../Components/AddCard';
 import DeckService from '../Services/DeckService.js'
 import EditDeck from '../Components/EditDeck.jsx';
+import { useNavigate } from 'react-router-dom';
 
 function MenuInicial() {
+
   const [isActive, setIsActive] = useState(false);
   const [attPage, setAttPage] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-
   const [decksData, setDecksData] = useState([]);
   const [selecionado, setSelecionado] = useState(-1);
+
   const styleSelectedRemove = 'w-full bg-red-600 my-2 text-2xl text-center font-bold cursor-pointer hover:bg-red-900';
   const styleSelectedEdit = 'w-full bg-green-600 my-2 text-2xl text-center font-bold cursor-pointer hover:bg-green-900';
   const styleNotSelected =  'w-full bg-gray-600 my-2 text-2xl text-center font-bold';
 
+  const navigate = useNavigate();
   const {token, setToken, user, setUser } = useContext(AuthContext);
 
   useEffect( () => {
@@ -69,7 +72,8 @@ function MenuInicial() {
             <li className='mb-1'> <span className='text-red-600 font-bold'>IMPORTANTE:</span> não esqueça de salvar seu Deck após selecionar todas as cartas que deseja.</li>
           </ul>
 
-          <div className='w-full p-3 hover:border cursor-pointer text-center bg-blue-600 my-3 font-bold'>SEE CARDS</div>
+          <div className='w-full p-3 hover:border cursor-pointer text-center bg-blue-600 my-3 font-bold'
+          onClick={ () => navigate('/deckdetail') }>SEE CARDS</div>
           <div className='w-full flex justify-evenly flex-wrap'>
             
             {
