@@ -5,16 +5,15 @@ import './index.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Configurando Router
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 import Home from './routes/Home.jsx'
 import MenuInicial from './routes/MenuInicial.jsx'
-//import MenuDecks from './routes/MenuDecks.jsx';
 import DeckDetails from './routes/DeckDetails.jsx';
 import RegistrarUsuario from './routes/RegistrarUsuario.jsx';
 import { AuthProvider } from './Context/AuthContext.jsx';
 import UploadPhoto from './routes/UploadPhoto.jsx';
+import PutCardsInDeck from './routes/PutCardsInDeck.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "inicio",
     element: <MenuInicial/>
+  },
+  {
+    path: "putcards",
+    element: <PutCardsInDeck/>
   },
   {
     path:"deckdetail",

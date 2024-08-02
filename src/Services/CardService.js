@@ -4,4 +4,8 @@ const getById = async  (id) => {
     return fetch(`${BASE_URL}/${id}`) 
 }
 
-export default {getById};
+const getAll = async () => {
+    return fetch (`${BASE_URL}/findall`);
+}
+
+export default {getById, getAll};

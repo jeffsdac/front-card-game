@@ -40,13 +40,14 @@ function MenuInicial() {
 
   const toggleEdit = () => {
     setIsEdit ( isEdit ? false : true );
-  }
+  };
 
   const handleRemove = async () => {
     const resp = await DeckService.removeById(selecionado);
     setAttPage(true)
     console.log(resp.status);
-  }
+  };
+
   
   return (
     
@@ -74,6 +75,12 @@ function MenuInicial() {
 
           <div className='w-full p-3 hover:border cursor-pointer text-center bg-blue-600 my-3 font-bold'
           onClick={ () => navigate('/deckdetail') }>SEE CARDS</div>
+
+          <div className='w-full p-3 hover:border cursor-pointer text-center bg-blue-600 my-3 font-bold'
+          onClick={ () => navigate('/putcards') }>
+            PUT YOUR CARDS
+          </div>
+
           <div className='w-full flex justify-evenly flex-wrap'>
             
             {

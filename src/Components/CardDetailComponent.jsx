@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import placeHolder from "../midias/card_1.png"
 import CardService from '../Services/CardService'
 
 function CardDetailComponent({toggleExpand, expandCardID}) {
