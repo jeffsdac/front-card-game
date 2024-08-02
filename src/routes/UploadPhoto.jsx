@@ -8,6 +8,14 @@ function UploadPhoto() {
 
     const [stringSource, setStringSource] = useState('');
     const [idImg, setIdImg] = useState(0);
+    const [selectedArtType, setSelectedArtType] = useState('');
+    const [uploadIdImg, setUploadIdImg] = useState(-1)
+
+    const artTypes = [
+        { value: 'BACKGROUNDDECK', label: 'Background Deck' },
+        { value: 'CARDART', label: 'Card Art' },
+        { value: 'BACKGROUNDART', label: 'Background Art' } 
+    ]
 
     const handleFileChange = (event) =>{
         const file = event.target.files[0]
@@ -27,7 +35,9 @@ function UploadPhoto() {
     }
 
     const handleUpload = async () =>{
-        const resp = await photoService.uploadArt(img64,ext);
+        const resp = await photoService.uploadArt(img64,ext,selectedArtType);
+        const body = await resp.json();
+        setUploadIdImg(body.id)
     }
 
     const handleGetImg = async () => {
@@ -57,10 +67,32 @@ function UploadPhoto() {
 
                     <input type="file" name="image" id="image" onChange={handleFileChange}/>
 
-                    <div className='w-full flex justify-center'>
+                    <div className='w-full flex justify-center flex-wrap'>
 
+                    <div className='w-full flex justify-center p-2 mt-4'>
+                        <select id="artType" name="artType" className='text-black p-2'
+                        value={selectedArtType} onChange={ (event) => setSelectedArtType(event.target.value) }>
+
+                        <option value="" disabled>Selecione uma opção</option>
+
+                        {
+                            artTypes.map( (artTypes) => (
+                                <option value={artTypes.value} key={artTypes.value}>
+                                    {artTypes.label}
+                                </option>
+                            ))
+                        }
+                                
+                        
+                    
+                        </select>
+
+                        
+                    </div>
+                        artype:{selectedArtType}
                         <div className='w-80 bg-slate-600 my-8 p-2 hover:bg-slate-700
                         cursor-pointer' onClick={handleUpload}>UPLOAD</div>
+                        <div className='font-bold text-green-600'>ID: {uploadIdImg}</div>
 
                     </div>
 

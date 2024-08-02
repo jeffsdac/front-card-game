@@ -8,16 +8,18 @@ const requestObj = {
     }
 }
 
-const uploadArt = async (base64img, extension) => {
+const uploadArt = async (base64img, extension, typeArt) => {
     const url = `${BASE_URL}/upload`
     
     const art = {
         content: base64img,
-        type: extension
+        type: extension,
+        typeArt: typeArt
     }
 
     const body = JSON.stringify(art)
     requestObj.body = body
+ //   console.log(body);
 
     return fetch(url, requestObj)
 }
