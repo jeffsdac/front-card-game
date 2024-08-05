@@ -31,4 +31,10 @@ const getArtById = async (id) => {
     return fetch(url);
 }
 
-export default {uploadArt, getArtById};
+// URL EXAMPLE: http://localhost:8080/api/arts/type?typeArt=BACKGROUNDDECK
+const getArtByType = async (typeImg) => {
+    const url = `${BASE_URL}/type?typeArt=${typeImg}`
+    return fetch (url);
+}
+
+export default {uploadArt, getArtById, getArtByType};

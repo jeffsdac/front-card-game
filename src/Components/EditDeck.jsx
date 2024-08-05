@@ -2,12 +2,18 @@ import React, { useContext, useEffect, useState } from 'react'
 import ArtComponent from './ArtComponent';
 import DeckService from '../Services/DeckService';
 import { AuthContext } from '../Context/AuthContext';
+import PhotoService from '../Services/PhotoService';
 
 
 function EditDeck({toggleEdit, deck, setAttPage, setDecksData}) {
 
     const {user} = useContext(AuthContext);
-    const [imageData, setImageData] = useState([1,2,4]);
+
+    const [imageData, setImageData] = useState([]);
+    // Está pegando pelo ID, fazer pegar pelo response
+    // Pegar os dados das imagens e por nesse array
+
+
     const [selectedId, setSelectedId] = useState(-1);
     const[deckName, setDeckName] = useState(deck.name);
     const [isLoading, setIsLoading] = useState(false);
@@ -30,6 +36,22 @@ function EditDeck({toggleEdit, deck, setAttPage, setDecksData}) {
         const formatted = formatDate(date);
         setCriacao(formatted);
       }, []);
+
+    
+      useEffect( () => {
+        
+        const getArts =  async () => {
+            const resp = await PhotoService.getArtByType("BACKGROUNDDECK");
+            const body = await resp.json();
+
+            console.log("Printando resposta: " , resp.status);
+            setImageData(body);
+        }  
+
+        getArts();
+
+    },[] )
+
 
       const getByUsername = async () => {
         const resp = await fetch (`http://localhost:8080/api/deck/user/${user}`);
@@ -60,10 +82,13 @@ function EditDeck({toggleEdit, deck, setAttPage, setDecksData}) {
                      { criacao }</p>
                 <p className='w-full text-center text-xl my-6'>Por favor selecione a arte que deseja</p>
                 {
-                    imageData.map( (id, key) => (
-                        <ArtComponent  isSelected={id === selectedId} id={id} key={key} 
-                        setSelectedId={setSelectedId}></ArtComponent>
-                    ))
+                    imageData.map( (imageBody, key) => (
+                        <ArtComponent 
+                        key={key}
+                        imageBody={imageBody}
+                        setSelectedId={setSelectedId}
+                        selectedId={selectedId}/>
+                    ) )
                 }       
                 
                 <div className='w-full flex justify-center pt-2 pb-8'>
