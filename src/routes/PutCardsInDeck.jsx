@@ -12,6 +12,7 @@ function PutCardsInDeck() {
 
     const[cardData, setCardData] = useState([])
 
+    const [cardsAlreadyInDeck, setCardsAlreadyInDeck] = useState([])
     const [cardInDeckData, setCardInDeckData] = useState([])
     const [cardType, setCardType] = useState("NECRO")
 
@@ -31,7 +32,7 @@ function PutCardsInDeck() {
             const resp = await RelDeckCardService.getCardsByDeckId(deckId);
             const body = await resp.json();
             console.log("A resposta para pegar os decks do card foi: " + resp);
-            setCardInDeckData(body);
+            setCardsAlreadyInDeck(body);
         }
 
         getCardsInDeck();
@@ -71,6 +72,11 @@ function PutCardsInDeck() {
 
                 <div className='w-1/4 h-full fixed right-4 overflow-y-scroll'>
                         {
+                            cardsAlreadyInDeck.map( (card, key) => (
+                                <div className='bg-slate-300 text-black cursor-pointer hover:bg-slate-500 p-2 m-2' key={key}> {card.tittle} </div>
+                            ))
+                        }
+                        {
                             cardInDeckData.map((card, key) => (
                                 <ListCardInDecksComponent
                                     card={card}
@@ -82,6 +88,7 @@ function PutCardsInDeck() {
                                 />
                             ))
                         }
+                        
                 </div>
 
                 <div 
