@@ -26,6 +26,17 @@ function PutCardsInDeck() {
         getCards();
     }, []  )
 
+    useEffect( () => {
+        const getCardsInDeck = async () => {
+            const resp = await RelDeckCardService.getCardsByDeckId(deckId);
+            const body = await resp.json();
+            console.log("A resposta para pegar os decks do card foi: " + resp);
+            setCardInDeckData(body);
+        }
+
+        getCardsInDeck();
+    }, [] )
+
     const handleSaveCardsOnDeck = async () => {
         cardInDeckData
         .map( async (card) => {
