@@ -5,14 +5,14 @@ const requestObj = {
     body: "",
     headers: {
         "Content-Type": "application/json",
-    }
+    },
+  mode: 'cors',
 }
 
 const getCardsByDeckId = async (deckId) => {
     const url = `${BASE_URL}/${deckId}`
 
     const request = {
-        method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -22,5 +22,22 @@ const getCardsByDeckId = async (deckId) => {
     return fetch(url, request)
 }
 
+const saveRelCardDeck = (cardId, deckId) => {
+  const url = `${BASE_URL}`
+  
+  const body = {
+    deckId: deckId,
+    cardId: cardId
+  }
 
-export default {getCardsByDeckId}
+  const request = requestObj;
+
+  request.body = JSON.stringify(body);
+
+  console.log("Fazendo o request do rel com o body: ",request)
+
+  return fetch (url, request)
+}
+
+
+export default {getCardsByDeckId, saveRelCardDeck}

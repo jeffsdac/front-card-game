@@ -8,4 +8,9 @@ const getAll = async () => {
     return fetch (`${BASE_URL}/findall`);
 }
 
-export default {getById, getAll};
+const getByType = async (cardType) => {
+    //'http://localhost:8080/api/card/type?cardType=NECRO' 
+    return fetch(`${BASE_URL}/type?cardType=${cardType}`)
+}
+
+export default {getById, getAll, getByType};
