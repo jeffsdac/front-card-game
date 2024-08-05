@@ -1,14 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ArtComponent from './ArtComponent';
 import DeckService from '../Services/DeckService.js'
 import { AuthContext } from '../Context/AuthContext.jsx';
+import PhotoService from '../Services/PhotoService.js';
+
 
 
 const ArtSelectionMenu = ({toggleActive, setAttPage}) => {
 
     const {token, user } = useContext(AuthContext);
 
-    const [imageData, setImageData] = useState([1,2,4]);
+    const [imageData, setImageData] = useState([]);
     const [selectedId, setSelectedId] = useState(1);
     const [username, setUSername] = useState(user);
     const[deckName, setDeckName] = useState("");
@@ -21,6 +23,20 @@ const ArtSelectionMenu = ({toggleActive, setAttPage}) => {
         toggleActive();
     }
 
+    useEffect( () => {
+        
+        const getArts =  async () => {
+            const resp = await PhotoService.getArtByType("BACKGROUNDDECK");
+            const body = await resp.json();
+
+            console.log("Printando resposta: " , resp.status);
+            setImageData(body);
+        }  
+
+        getArts();
+
+    },[] )
+
 
 
     return (
@@ -29,13 +45,18 @@ const ArtSelectionMenu = ({toggleActive, setAttPage}) => {
         onClick={toggleActive}>
             <div className='flex justify-center min-h-80 sticky items-center bg-zinc-950 flex-wrap shadow-sm p-6 rounded-md z=10'
             onClick={(e) => e.stopPropagation()}>
-            {
-                imageData.map( (id, key) => (
-                    <ArtComponent  isSelected={id === selectedId} id={id} key={key} 
-                    setSelectedId={setSelectedId}></ArtComponent>
-                ))
-            }
-                <div className='flex flex-wrap w-2/4 justify-center items-center py-8'>
+                <div className='flex flex-wrap w-3/4 justify-center items-center py-8'>
+
+                {
+                    imageData.map( (imageBody, key) => (
+                        <ArtComponent 
+                        key={key}
+                        imageBody={imageBody}
+                        setSelectedId={setSelectedId}
+                        selectedId={selectedId}/>
+                    ) )
+                } 
+                
                     <label className='w-full p-2 text-2xl green-text' htmlFor='username'>Nome do seu Deck</label>
                     <input type='text' placeholder='Digite o seu username aqui' 
                     className='w-full bg-transparent px-3 focus:outline-none border-b green-border placeholder-gray-600

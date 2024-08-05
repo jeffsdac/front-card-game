@@ -38,7 +38,7 @@ function EditDeck({toggleEdit, deck, setAttPage, setDecksData}) {
       }, []);
 
     
-      useEffect( () => {
+    useEffect( () => {
         
         const getArts =  async () => {
             const resp = await PhotoService.getArtByType("BACKGROUNDDECK");
