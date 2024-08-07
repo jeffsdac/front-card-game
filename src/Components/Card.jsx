@@ -32,7 +32,6 @@ const Card = ({element, setSelecionado, selecionado, attPage}) => {
           {
             isSelected && <div className='absolute w-8 h-8 -top-2 -right-2 rounded-full bg-green-600 flex items-center justify-center'>✓</div>
           }
-          <div>{element.id}</div>
         </div>
     );
 }

@@ -50,7 +50,6 @@ function PutCardsInDeck() {
             <div className="bg-slate-900 min-h-screen flex pb-4 overflow-auto relative">
                 <div className='w-3/4 '>
                     <h1 className='text-center my-2 font-bold text-xl'>NOME DO DECK</h1>
-                    DECKE É: {deckId}
 
                     <p className='text-center mt-2 mb-8'>Basta clicar na carta para que ela seja adicionada em seu deck</p>
 
