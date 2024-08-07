@@ -41,7 +41,7 @@ const ArtSelectionMenu = ({toggleActive, setAttPage}) => {
 
     return (
         <div className='fixed inset-0 w-full h-full flex justify-center 
-        items-center z-10 bg-preto-transparente'
+        items-center z-10 bg-preto-transparente z-50'
         onClick={toggleActive}>
             <div className='flex justify-center min-h-80 sticky items-center bg-zinc-950 flex-wrap shadow-sm p-6 rounded-md z=10'
             onClick={(e) => e.stopPropagation()}>

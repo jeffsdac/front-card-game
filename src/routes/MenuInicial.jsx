@@ -6,6 +6,7 @@ import AddCard from '../Components/AddCard';
 import DeckService from '../Services/DeckService.js'
 import EditDeck from '../Components/EditDeck.jsx';
 import { useNavigate } from 'react-router-dom';
+import Header from '../Components/Header.jsx';
 
 function MenuInicial() {
 
@@ -14,6 +15,7 @@ function MenuInicial() {
   const [isEdit, setIsEdit] = useState(false);
   const [decksData, setDecksData] = useState([]);
   const [selecionado, setSelecionado] = useState(-1);
+  const [nomeSelecionado, setNomeSelecionado] = useState('Selecione um deck');
 
   const styleSelectedRemove = 'w-full bg-red-600 my-2 text-2xl text-center font-bold cursor-pointer hover:bg-red-900';
   const styleSelectedEdit = 'w-full bg-green-600 my-2 text-2xl text-center font-bold cursor-pointer hover:bg-green-900';
@@ -37,7 +39,6 @@ function MenuInicial() {
   const toggleActive = () =>{
     setIsActive( isActive ? false : true);
   };
-
   const toggleEdit = () => {
     setIsEdit ( isEdit ? false : true );
   };
@@ -52,7 +53,11 @@ function MenuInicial() {
   return (
     
 
-    <div className=" bg-[url('./midias/bg_login.jpeg')] bg-cover bg-center bg-no-repeat min-h-screen flex justify-center items-center">
+    <div className="bg-gradient-to-br from-[#020419] via-[#000318] to-[#020419] min-h-screen flex justify-center items-center flex-wrap bg-black relative">
+      <Header></Header>
+      <div className='w-full banner bg-slate-900 border-b border-slate-700 flex justify-center items-center bg-[url("./midias/bg-banner-4.png")] bg-cover bg-top bg-no-repeat mt-6'>
+      </div>
+      
       {
         isActive &&
         <ArtSelectionMenu toggleActive={toggleActive} setAttPage={setAttPage}/>
@@ -62,42 +67,49 @@ function MenuInicial() {
         <EditDeck toggleEdit={toggleEdit} deck={ decksData.find( deck => deck.id == selecionado ) }
         setAttPage={setAttPage} setSelecionado={setSelecionado} setDecksData={setDecksData}/>
       }
-        
-        <div className='sm:w-full sm:mx-2 md:w-3/4 bg-preto min-h-screen p-4'>
-          <h1 className='text-2xl font-bold text-center mb-4 green-text'>Seus Decks</h1>
-          <p className='mb-4 text-xl font-semibold'>Aqui é onde você irá montar seus primeiros Decks, o passo a passo é bem simples: </p>
-          <ul className='list-disc px-4 mb-8'>
-            <li className='mb-1'>Clique no ícone de + ou no quadrado abaixo.</li>
-            <li className='mb-1'>Selecione a arte e dê um nome para o seu Deck.</li>
-            <li className='mb-1'>Após isso você será redirecionado ao menu de seleção de cartas, dentro desse menu basta você clicar na carta selecionada e ela irá aparecer no menu a direita.</li>
-            <li className='mb-1'> <span className='text-red-600 font-bold'>IMPORTANTE:</span> não esqueça de salvar seu Deck após selecionar todas as cartas que deseja.</li>
-          </ul>
+        <div className='w-4/5 my-12 pb-12 flex border-b'>
+          <div className='w-full flex justify-center items-center flex-wrap'>
+            <div className='w-3/4 flex'>
+              <div className='w-1/2 rounded mx-2 p-4 text-center bg-button font-bold cursor-pointer hover:bg-slate-400'
+              onClick={toggleEdit}>
+                Editar nome e arte
+              </div>
 
-          <div className='w-full p-3 hover:border cursor-pointer text-center bg-blue-600 my-3 font-bold'
-          onClick={ () => navigate('/deckdetail') }>SEE CARDS</div>
+              <div className='w-1/2  mx-2 p-4 text-center bg-button font-bold cursor-pointer hover:bg-slate-400'
+              onClick={handleRemove}>
+                Remover
+              </div>
 
-          <div className='w-full p-3 hover:border cursor-pointer text-center bg-blue-600 my-3 font-bold'
-          onClick={ () => navigate('/putcards') }>
-            PUT YOUR CARDS
+              <div className='w-1/2  mx-2 p-4 text-center bg-button font-bold cursor-pointer hover:bg-slate-400'
+              onClick={ () => navigate('/deckdetail')}>
+                Ver detalhes
+              </div>
+
+              <div className='w-1/2  mx-2 p-4 text-center bg-button font-bold cursor-pointer hover:bg-slate-400'
+              onClick={ () => navigate('/putcards') }>Colocar cards</div>
+            </div>
           </div>
-
-          <div className='w-full flex justify-evenly flex-wrap'>
-            
-            {
+        </div>
+        
+        <div className='w-3/4 flex justify-evenly flex-wrap mt-2'>
+          <p className='w-full text-center font-bold text-xl mb-10'>{nomeSelecionado}</p>
+          {
               decksData.map ( (element, key) => (
                 <Card element={element} key={key} selecionado={selecionado} 
-                setSelecionado={setSelecionado} attPage={attPage}/>
+                setSelecionado={setSelecionado} attPage={attPage} setNomeSelecionado={setNomeSelecionado}/>
               ))
             }
             <AddCard toggleActive={toggleActive}/>
-          </div>
-          <div className={selecionado == -1 ?  styleNotSelected : styleSelectedRemove}
-          onClick={handleRemove}>REMOVE DECK</div>
-
-          <div className={selecionado == -1 ?  styleNotSelected : styleSelectedEdit}
-          onClick={toggleEdit}>EDIT DECK</div>
+          
         </div>
 
+        <article className='w-3/4 my-10'>
+          <h2 className='text-4xl text-center font-bold mt-4'>Sobre mim</h2>
+          <p className='text-xl pt-2 text-justify'>Olá! Eu me chamo Jefferson e esse site é um projeto pessoal meu, a ideia desse site era criar algo parecido com uma tela de seleção de decks as quais eu via em Hearthstone ou em outros Cardgames, toda imagem nesse site foi rederizada através do meu sistema! e tudo que está rodando aqui está no meu banco de dados, a ideia era criar um site para mostrar um backend que eu já pensava faz tempo e agora você está nele!</p>
+          <p className='text-xl pt-2 text-justify'>Sou um desenvolvedor backend que faz as telas para que as pessoas tenham algo palpável para ver durante o projeto! caso tenha alguma proposta para enviar para mim, é só enviar um email para: contato.jeffsdac@gmail.com ou me chamar lá no LinkedIn.</p>
+          <p className='text-xl pt-2 text-justify'>Sei que o projeto parece um tanto antiquado para o mercado de trabalho, mas pense nos decks como sendo compras em um carrinho de compras, ou também pense nos registros os quais você faz pare colocar um novo Deck, como sendo um registro de um novo produto, as ideias criadas aqui podem ser abstraídas e principalmente, podem ser replicadas de diversas formas em muitos outros projetos, basta usar um pouco de criatividade.</p>
+          <p className='text-xl pt-2'>Espero que você goste do site!</p>
+        </article>
     </div>
   )
 }

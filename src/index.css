@@ -97,4 +97,12 @@ input:-webkit-autofill {
   width: 250px;
   height: 380px;
 }
+
+.banner{
+  height: 34rem;
+}
+
+.bg-button {
+  background-color: #327586;
+}
   
