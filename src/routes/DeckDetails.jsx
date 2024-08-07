@@ -9,7 +9,6 @@ export default function DeckDetails() {
 
     const [cards, setCards] = useState([])
     const {deckId} = useContext(AuthContext);
-    const [res, setRes] = useState(-1);
     const [expand, setExpand] = useState(false);
     const [expandCardID, setExapandCardId] = useState(-1);
 

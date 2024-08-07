@@ -9,7 +9,7 @@ function CardSelectComponent({rel, toggleExpand, setExapandCardId}) {
 
     useEffect ( () => {
         const findById = async () => {
-            const resp = await CardService.getById(rel.cardId);
+            const resp = await CardService.getById(rel.idCard);
             const body = await resp.json();
             setUrlBase64(`data:image/png;base64,${body.art}`);
             setCardInfo(body);
@@ -19,7 +19,7 @@ function CardSelectComponent({rel, toggleExpand, setExapandCardId}) {
     }, [] ) 
 
     const handleNewWindow = () => {
-        setExapandCardId(rel.cardId);
+        setExapandCardId(rel.idCard);
         toggleExpand();
     }
 
