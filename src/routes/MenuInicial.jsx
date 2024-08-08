@@ -17,15 +17,10 @@ function MenuInicial() {
   const [selecionado, setSelecionado] = useState(-1);
   const [nomeSelecionado, setNomeSelecionado] = useState('Selecione um deck');
 
-  const styleSelectedRemove = 'w-full bg-red-600 my-2 text-2xl text-center font-bold cursor-pointer hover:bg-red-900';
-  const styleSelectedEdit = 'w-full bg-green-600 my-2 text-2xl text-center font-bold cursor-pointer hover:bg-green-900';
-  const styleNotSelected =  'w-full bg-gray-600 my-2 text-2xl text-center font-bold';
-
   const navigate = useNavigate();
   const {token, setToken, user, setUser } = useContext(AuthContext);
 
   useEffect( () => {
-    console.log("get decks com user: " + user)
     const getByUsername = async () => {
       const resp = await fetch (`http://localhost:8080/api/deck/user/${user}`);
       const body = await resp.json();

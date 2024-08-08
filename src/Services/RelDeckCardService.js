@@ -10,7 +10,7 @@ const requestObj = {
 }
 
 const getCardsByDeckId = async (deckId) => {
-    const url = `${BASE_URL}/${deckId}`
+    const url = `${BASE_URL}/justid/${deckId}`
 
     const request = {
         headers: {

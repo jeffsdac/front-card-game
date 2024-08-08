@@ -5,6 +5,7 @@ import cardService from '../Services/CardService'
 import { AuthContext } from '../Context/AuthContext';
 import RelDeckCardService from '../Services/RelDeckCardService';
 import { toast } from 'react-toastify';
+import PutCardMenuItem from '../Components/PutCardMenuItem';
 
 
 function PutCardsInDeck() {
@@ -36,7 +37,8 @@ function PutCardsInDeck() {
         const getCardsInDeck = async () => {
             const resp = await RelDeckCardService.getCardsByDeckId(deckId);
             const body = await resp.json();
-            console.log("A resposta para pegar os decks do card foi: " + resp);
+            console.log("A resposta para pegar os decks do card foi: " + resp.status);
+            console.log(body)
             setCardsAlreadyInDeck(body);
             setPageUpdate(false);
         }
@@ -80,6 +82,7 @@ function PutCardsInDeck() {
                                     setCardInDeckData={setCardInDeckData}
                                     cardData= {cardData}
                                     cardInDeckData = {cardInDeckData}
+                                    cardsAlreadyInDeck={cardsAlreadyInDeck}
                                 />
                             ))
                         }
@@ -87,9 +90,12 @@ function PutCardsInDeck() {
                 </div>
 
                 <div className='w-1/4 h-full fixed right-4 overflow-y-scroll z-0'>
-                        {
+                        {   
                             cardsAlreadyInDeck.map( (card, key) => (
-                                <div className='bg-slate-300 text-black cursor-pointer hover:bg-slate-500 p-2 m-2' key={key}> {card.tittle} </div>
+                                <PutCardMenuItem 
+                                key={key} 
+                                card={card}
+                                />
                             ))
                         }
                         {
