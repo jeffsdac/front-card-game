@@ -19,6 +19,7 @@ function PutCardsInDeck() {
     const [cardType, setCardType] = useState("NECRO");
     const [isLoading, setIsLoading] = useState();
     const [pageUpdate, setPageUpdate] = useState(false);
+    const [menuSession, setMenuSession] = useState([]);
 
     useEffect( () => {
         const getCards = async () => {
@@ -83,6 +84,8 @@ function PutCardsInDeck() {
                                     cardData= {cardData}
                                     cardInDeckData = {cardInDeckData}
                                     cardsAlreadyInDeck={cardsAlreadyInDeck}
+                                    menuSession={menuSession}
+                                    setMenuSession={setMenuSession}
                                 />
                             ))
                         }
@@ -99,14 +102,11 @@ function PutCardsInDeck() {
                             ))
                         }
                         {
-                            cardInDeckData.map((card, key) => (
+                            menuSession.map((card, key) => (
                                 <ListCardInDecksComponent
-                                    card={card}
-                                    key={key}
-                                    setCardData={setCardData} 
-                                    setCardInDeckData={setCardInDeckData}
-                                    cardData= {cardData}
-                                    cardInDeckData = {cardInDeckData}
+                                key={key}
+                                card={card}
+                                menuSession={menuSession}
                                 />
                             ))
                         }
