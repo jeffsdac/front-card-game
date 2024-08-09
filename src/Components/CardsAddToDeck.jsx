@@ -20,10 +20,11 @@ function CardsAddToDeck({cardInfo, setCardData, setCardInDeckData, cardData, car
         console.log(cardInfo.idCard);
         const times = cardsAlreadyInDeck.filter((rel) => rel.idCard == cardInfo.idCard);
         console.log(times)
-        // if (times == undefined || times == null){
-        //     setShow(true);
-        //     return;
-        // }
+        if (times == undefined || times == null || times.length == 0){
+            setShow(true);
+            setImgUrl(`data:image/png;base64,${cardInfo.art}`)
+            return;
+        }
         const tms = times[0].qtd;
         tms < 2 ? setShow(true) : setShow(false);
         setImgUrl(`data:image/png;base64,${cardInfo.art}`)
