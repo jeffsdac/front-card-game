@@ -1,9 +1,16 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Header() {
 
     const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.clear();
+        navigate("/");
+        toast("Você foi deslogado com sucesso!")
+    }
 
     return (
         <header className='fixed w-full h-16 bg-red-600 top-0 bg-gradient-to-br from-[#020419] via-[#000318] to-[#020419] flex justify-end items-center z-50 shadow-lg'>
@@ -19,6 +26,8 @@ function Header() {
                         onClick={() => navigate("/inicio")}>Home</li>
                         <li className='p-2 hover:bg-slate-600 cursor-pointer font-semibold'
                         onClick={ () => navigate("/sobre") }>Sobre o projeto</li>
+                        <li className='p-2 hover:bg-slate-600 cursor-pointer font-semibold'
+                        onClick={logout}>Logout</li>
                     </ul>
                     <div className='w-12 h-12 rounded-full mr-12 cursor-pointer flex justify-center items-center border border-slate-100 hover:bg-slate-400'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">

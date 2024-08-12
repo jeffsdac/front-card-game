@@ -70,6 +70,7 @@ function PutCardsInDeck() {
 
     return (
             <div className="bg-gradient-to-br from-[#020419] via-[#000318] to-[#020419] min-h-screen flex pb-4 overflow-auto relative">
+                <div className='absolute bg-red-600 top-2 left-2 text-4xl p-4 hover:bg-slate-600 cursor-pointer bg-transparent'>←</div>
                 <div className='w-3/4 '>
 
                 {isLoading &&

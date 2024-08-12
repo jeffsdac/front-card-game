@@ -20,6 +20,12 @@ function Home() {
   const {token, setToken, user, setUser } = useContext(AuthContext);
 
   useEffect ( () => {
+    const storedUser = localStorage.getItem('username');
+    console.log(storedUser);
+    if (storedUser !== null){
+      navigate("/inicio");
+    }
+
     console.log(codeResponse);
     if (codeResponse === 200){
       navigate("inicio")
