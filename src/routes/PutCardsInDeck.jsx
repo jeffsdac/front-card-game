@@ -65,7 +65,7 @@ function PutCardsInDeck() {
     }
 
     return (
-            <div className="bg-slate-900 min-h-screen flex pb-4 overflow-auto relative">
+            <div className="bg-gradient-to-br from-[#020419] via-[#000318] to-[#020419] min-h-screen flex pb-4 overflow-auto relative">
                 <div className='w-3/4 '>
 
                 {isLoading &&
@@ -126,7 +126,7 @@ function PutCardsInDeck() {
                 </div>
 
                 <div 
-                className='fixed bottom-4 left-8 p-2 bg-green-900 font-bold border hover:bg-green-600 cursor-pointer'
+                className='fixed bottom-4 left-8 p-2 bg-green-900 font-bold hover:bg-green-600 cursor-pointer'
                 onClick={handleSaveCardsOnDeck}>
                     CONFIRMAR ALTERAÇÕES
                 </div>

@@ -86,7 +86,7 @@ function MenuInicial() {
           </div>
         </div>
         
-        <div className='w-3/4 flex justify-evenly flex-wrap mt-2'>
+        <div className='w-3/4 flex justify-evenly flex-wrap mt-2 mb-12'>
           <p className='w-full text-center font-bold text-xl mb-10'>{nomeSelecionado}</p>
           {
               decksData.map ( (element, key) => (
@@ -97,14 +97,6 @@ function MenuInicial() {
             <AddCard toggleActive={toggleActive}/>
           
         </div>
-
-        <article className='w-3/4 my-10'>
-          <h2 className='text-4xl text-center font-bold mt-4'>Sobre mim</h2>
-          <p className='text-xl pt-2 text-justify'>Olá! Eu me chamo Jefferson e esse site é um projeto pessoal meu, a ideia desse site era criar algo parecido com uma tela de seleção de decks as quais eu via em Hearthstone ou em outros Cardgames, toda imagem nesse site foi rederizada através do meu sistema! e tudo que está rodando aqui está no meu banco de dados, a ideia era criar um site para mostrar um backend que eu já pensava faz tempo e agora você está nele!</p>
-          <p className='text-xl pt-2 text-justify'>Sou um desenvolvedor backend que faz as telas para que as pessoas tenham algo palpável para ver durante o projeto! caso tenha alguma proposta para enviar para mim, é só enviar um email para: contato.jeffsdac@gmail.com ou me chamar lá no LinkedIn.</p>
-          <p className='text-xl pt-2 text-justify'>Sei que o projeto parece um tanto antiquado para o mercado de trabalho, mas pense nos decks como sendo compras em um carrinho de compras, ou também pense nos registros os quais você faz pare colocar um novo Deck, como sendo um registro de um novo produto, as ideias criadas aqui podem ser abstraídas e principalmente, podem ser replicadas de diversas formas em muitos outros projetos, basta usar um pouco de criatividade.</p>
-          <p className='text-xl pt-2'>Espero que você goste do site!</p>
-        </article>
     </div>
   )
 }

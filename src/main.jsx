@@ -14,6 +14,8 @@ import RegistrarUsuario from './routes/RegistrarUsuario.jsx';
 import { AuthProvider } from './Context/AuthContext.jsx';
 import UploadPhoto from './routes/UploadPhoto.jsx';
 import PutCardsInDeck from './routes/PutCardsInDeck.jsx';
+import Sobre from './routes/Sobre.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,10 @@ const router = createBrowserRouter([
   {
     path:"photo-post",
     element: <UploadPhoto/>
+  },
+  {
+    path:"sobre",
+    element:<Sobre/>
   }
 ])
 
