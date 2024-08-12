@@ -40,7 +40,11 @@ function PutCardsInDeck() {
 
     useEffect( () => {
         const getCardsInDeck = async () => {
-            const resp = await RelDeckCardService.getCardsByDeckId(deckId);
+            let idDeck = deckId;
+            if (idDeck === -1 ){
+                idDeck = Number(localStorage.getItem('idDeck'));
+            }
+            const resp = await RelDeckCardService.getCardsByDeckId(idDeck);
             const body = await resp.json();
             console.log("A resposta para pegar os decks do card foi: " + resp.status);
             console.log(body)

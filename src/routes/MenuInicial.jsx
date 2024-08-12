@@ -22,7 +22,11 @@ function MenuInicial() {
 
   useEffect( () => {
     const getByUsername = async () => {
-      const resp = await fetch (`http://localhost:8080/api/deck/user/${user}`);
+      let localUser = user;
+      if (user === ""){
+        localUser = localStorage.getItem('username');
+      }
+      const resp = await fetch (`http://localhost:8080/api/deck/user/${localUser}`);
       const body = await resp.json();
       setDecksData(body);
     }
