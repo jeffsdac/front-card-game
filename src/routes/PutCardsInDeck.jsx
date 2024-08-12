@@ -20,6 +20,10 @@ function PutCardsInDeck() {
     const [isLoading, setIsLoading] = useState();
     const [pageUpdate, setPageUpdate] = useState(false);
     const [menuSession, setMenuSession] = useState([]);
+    const [updateMenu, setUpdateMenu] = useState(false);
+
+
+
 
     useEffect( () => {
         const getCards = async () => {
@@ -74,6 +78,7 @@ function PutCardsInDeck() {
                     <p className='text-center mt-2 mb-8'>Basta clicar na carta para que ela seja adicionada em seu deck</p>
 
                     <div className='w-full flex justify-center flex-wrap'>
+                    
                         {
                             cardData.map((cardInfo, key) => (
                                 <CardsAddToDeck 
@@ -86,6 +91,8 @@ function PutCardsInDeck() {
                                     cardsAlreadyInDeck={cardsAlreadyInDeck}
                                     menuSession={menuSession}
                                     setMenuSession={setMenuSession}
+                                    updateMenu={updateMenu}
+                                    setUpdateMenu={setUpdateMenu}
                                 />
                             ))
                         }
@@ -93,6 +100,8 @@ function PutCardsInDeck() {
                 </div>
 
                 <div className='w-1/4 h-full fixed right-4 overflow-y-scroll z-0'>
+                <h2 className='pt-3 font-bold text-xl text-center'>Already in deck</h2>
+
                         {   
                             cardsAlreadyInDeck.map( (card, key) => (
                                 <PutCardMenuItem 
@@ -101,12 +110,15 @@ function PutCardsInDeck() {
                                 />
                             ))
                         }
+                        <h2 className='border-t pt-3 font-bold text-xl text-center'>Cards to save</h2>
                         {
                             menuSession.map((card, key) => (
                                 <ListCardInDecksComponent
                                 key={key}
                                 card={card}
                                 menuSession={menuSession}
+                                setMenuSession={setMenuSession}
+                                setUpdateMenu={setUpdateMenu}
                                 />
                             ))
                         }

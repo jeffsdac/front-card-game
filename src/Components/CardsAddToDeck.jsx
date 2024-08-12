@@ -1,40 +1,58 @@
 import React, { useEffect, useState } from 'react'
 
 function CardsAddToDeck({cardInfo, setCardData, cardData,cardsAlreadyInDeck, setMenuSession, 
-    menuSession}) {
+    menuSession, updateMenu, setUpdateMenu}) {
 
     const [imgUrl, setImgUrl] = useState('');
     const [show, setShow] = useState(true);
 
     const notInv = 'm-4 cursor-pointer hover:border';
-    const inv = 'invisible'
+    const inv = 'invisible w-0 h-0'
     const [cardMenuSession, setcardMenuSession] = useState({idCard:cardInfo.idCard,
         screen:0,
         menu:0,
         tittle: cardInfo.tittle});
 
     const handleSwitch = async () => {
-        const index = cardData.findIndex ( element => element.tittle === cardInfo.tittle );
-        //const cardObj = cardData[index]
         removeOneScreen();
     }
 
+    useEffect( () => {
+        const info = menuSession.find ( c => c.idCard === cardInfo.idCard );
+        if (info === undefined){
+            return;
+        } 
+        //console.log("O info screen é: " + info.screen);
+        if (info.screen >= 1){
+            //console.log(`Exibindo card: ${info.tittle} screen: ${info.screen}`)
+            cardMenuSession.screen = info.screen;
+            cardMenuSession.menu = info.menu;
+            setShow(true);
+        }
+
+        setUpdateMenu(false);
+    }, [updateMenu] ) 
+
     useEffect ( () => {
-        console.log(cardMenuSession.menu);
+        console.log("O valor de .menu é: " + cardMenuSession.menu);
         if (cardMenuSession.menu == 1){
             addToSessionList();
         }
         if (cardMenuSession.menu == 2){
-            console.log("é pra atualizar")
+            //console.log("é pra atualizar")
             setMenuSession( menuSession => menuSession.map((card) => 
-            card.idCard == cardMenuSession.idCard ?{...card, menu: 2} : card));
+            card.idCard == cardMenuSession.idCard ?{...card, menu: 2, screen: 0} : card));
+        }
+        if (cardMenuSession.screen <= 0){
+            //console.log("É PRA SAIR");
+            setShow(false);
         }
     },[cardMenuSession] )
 
     useEffect( () => {
-        console.log(cardInfo.idCard);
+        //console.log(cardInfo.idCard);
         const times = cardsAlreadyInDeck.filter((rel) => rel.idCard == cardInfo.idCard);
-        console.log(times)
+        //console.log(times)
         if (times == undefined || times == null || times.length == 0){
             setShow(true);
             setImgUrl(`data:image/png;base64,${cardInfo.art}`)
@@ -42,7 +60,7 @@ function CardsAddToDeck({cardInfo, setCardData, cardData,cardsAlreadyInDeck, set
             return;
         }
         const tms = times[0].qtd;
-        defineScreen(tms);
+        defineScreen(2 - tms);
         tms < 2 ? setShow(true) : setShow(false);
         setImgUrl(`data:image/png;base64,${cardInfo.art}`)
     }, [] )
@@ -66,17 +84,21 @@ function CardsAddToDeck({cardInfo, setCardData, cardData,cardsAlreadyInDeck, set
         if (cardMenuSession.menu > 2){
             cardMenuSession.menu = 0;
         }
-        const screenValue = cardMenuSession.screen;
+        const screenValue = cardMenuSession.screen - 1;
+        console.log("O screenValue salvo é: " + screenValue)
         const menuValue= cardMenuSession.menu;
         setcardMenuSession({
             ...cardMenuSession,
-            screen: screenValue - 1,
+            screen: screenValue,
             menu: menuValue + 1
         })
     }
 
     const addToSessionList =  async () => {
-        setMenuSession(menuSession => [...menuSession, cardMenuSession]);
+        const objFinder = menuSession.find ( (c) => c.idCard === cardInfo.idCard );
+        if (objFinder === undefined){
+            setMenuSession(menuSession => [cardMenuSession , ...menuSession]);
+        }
     }
 
     return (
