@@ -9,12 +9,14 @@ export const AuthProvider = ({children}) => {
     const [deckId, setDeckId] = useState(-1);
 
     useEffect( () =>{
+        console.log("SETANDO USUARIO...")
         if (user !== ""){
             localStorage.setItem('username', user);
         };
     }, [user]  )
 
     useEffect( () => {
+        console.log("SETANDO DECK")
         if (deckId !== -1){
             localStorage.setItem('idDeck', deckId.toString());
         }

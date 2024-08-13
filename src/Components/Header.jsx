@@ -7,7 +7,7 @@ function Header() {
     const navigate = useNavigate();
 
     const logout = () => {
-        localStorage.clear();
+        localStorage.setItem('username', "");
         navigate("/");
         toast("Você foi deslogado com sucesso!")
     }

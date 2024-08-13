@@ -20,15 +20,11 @@ function Home() {
   const {token, setToken, user, setUser } = useContext(AuthContext);
 
   useEffect ( () => {
-    const storedUser = localStorage.getItem('username');
-    console.log(storedUser);
-    if (storedUser !== null){
-      navigate("/inicio");
-    }
 
     console.log(codeResponse);
     if (codeResponse === 200){
-      navigate("inicio")
+      console.log("RESP 200")
+      navigate("/inicio")
       setToken(responseBody.acessToken);
       setUser(username);
     }
@@ -40,6 +36,14 @@ function Home() {
       console.log("Ocorreu um erro no servidor, aguarde alguns instantes para tentar novamente");
     }
   }, [codeResponse, responseBody] ) 
+
+  useEffect ( () => {
+    const storedUser = localStorage.getItem('username');
+    if (storedUser !== "null" && !(storedUser.length === 0)){
+      console.log("MUDANDO PARA INICIO")
+      navigate("/inicio");
+    }
+  }, [] )
 
   const handlerLogin = async () => {
     const resp = await UserService.loginUser(username, password);
