@@ -23,9 +23,10 @@ function Home() {
 
     console.log(codeResponse);
     if (codeResponse === 200){
-      console.log("RESP 200")
-      navigate("/inicio")
+      console.log("RESP 200");
+      navigate("/inicio");
       setToken(responseBody.acessToken);
+      localStorage.setItem('username', username);
       setUser(username);
     }
     if (codeResponse === 401){
