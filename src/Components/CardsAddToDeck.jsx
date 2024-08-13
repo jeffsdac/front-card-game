@@ -81,7 +81,7 @@ function CardsAddToDeck({cardInfo, setCardData, cardData,cardsAlreadyInDeck, set
     }
 
     const removeOneScreen = async () =>{
-        if (cardMenuSession.menu > 2){
+        if (cardMenuSession.menu > 3){
             cardMenuSession.menu = 0;
         }
         const screenValue = cardMenuSession.screen - 1;
@@ -98,7 +98,11 @@ function CardsAddToDeck({cardInfo, setCardData, cardData,cardsAlreadyInDeck, set
         const objFinder = menuSession.find ( (c) => c.idCard === cardInfo.idCard );
         if (objFinder === undefined){
             setMenuSession(menuSession => [cardMenuSession , ...menuSession]);
+            return;
         }
+        const valor = objFinder.menu + 1 ;
+        const valorScreen = objFinder.screen - 1;
+        setMenuSession( menuSession.map( (c) => c.idCard === cardInfo.idCard ? {...c, menu:valor, screen: valorScreen} : c));
     }
 
     return (

@@ -29,7 +29,7 @@ function ListCardInDecksComponent({card, menuSession, change, setMenuSession, se
                     : objCard
             )
         );
-        if (menuTimes <= 1){
+        if (menuTimes <= 0){
             setUpdateMenu(true);
         }
     };
