@@ -48,6 +48,14 @@ function MenuInicial() {
     console.log(resp.status);
   };
 
+  useEffect ( () => {
+    const storedUser = localStorage.getItem('username');
+    if (storedUser === "null" || storedUser.length === 0){
+      console.log("MUDANDO PARA INICIO")
+      navigate("/");
+    }
+  }, [] )
+
   
   return (
     

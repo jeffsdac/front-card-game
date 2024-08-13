@@ -6,6 +6,7 @@ import { AuthContext } from '../Context/AuthContext';
 import RelDeckCardService from '../Services/RelDeckCardService';
 import { toast } from 'react-toastify';
 import PutCardMenuItem from '../Components/PutCardMenuItem';
+import {useNavigate} from 'react-router-dom';
 
 
 function PutCardsInDeck() {
@@ -21,6 +22,7 @@ function PutCardsInDeck() {
     const [pageUpdate, setPageUpdate] = useState(false);
     const [menuSession, setMenuSession] = useState([]);
     const [updateMenu, setUpdateMenu] = useState(false);
+    const navigate = useNavigate();
 
 
 
@@ -70,7 +72,8 @@ function PutCardsInDeck() {
 
     return (
             <div className="bg-gradient-to-br from-[#020419] via-[#000318] to-[#020419] min-h-screen flex pb-4 overflow-auto relative">
-                <div className='absolute bg-red-600 top-2 left-2 text-4xl p-4 hover:bg-slate-600 cursor-pointer bg-transparent'>←</div>
+                <div className='absolute bg-red-600 top-2 left-2 text-4xl p-4 hover:bg-slate-600 cursor-pointer bg-transparent' 
+                onClick={ () => navigate("/inicio")}>←</div>
                 <div className='w-3/4 '>
 
                 {isLoading &&
