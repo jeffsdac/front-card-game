@@ -38,6 +38,7 @@ function PutCardsInDeck() {
         }
 
         getCards();
+        setPageUpdate(false);
     }, [pageUpdate]  )
 
     useEffect( () => {
@@ -55,20 +56,36 @@ function PutCardsInDeck() {
         }
 
         getCardsInDeck();
+        setPageUpdate(false);
     }, [pageUpdate] )
 
     const handleSaveCardsOnDeck = async () => {
-        setIsLoading(true);
-        const results = await Promise.all(
-            menuSession.map( async (c) => {
+        const dtos = getArrayOfDtos();
 
-            })
-        )
+        const resp = await RelDeckCardService.saveAllCardsRel(dtos);
+        console.log("A resposta para salvar os cards foi: " + resp.status);
+        setPageUpdate(true);
+        setMenuSession([]);
     }
 
-    const saveAnRel = async (c) => {
-        
+    const getArrayOfDtos = () => {
+        const dtos = menuSession.map( (c) => {
+            return convertCardToDto(c)
+        });
+
+        return dtos;
     };
+
+    const convertCardToDto = (card) => {
+        const dto = {
+            idCard: card.idCard,
+            idDeck: deckId,
+            qtd: card.menu
+        };
+        //console.log(`O card: ${card.idCard}` );
+        //console.log(`Está salvando: ${dto.idCard} qtd: ${dto.qtd}`);
+        return dto;
+    }
 
     return (
             <div className="bg-gradient-to-br from-[#020419] via-[#000318] to-[#020419] min-h-screen flex pb-4 overflow-auto relative">

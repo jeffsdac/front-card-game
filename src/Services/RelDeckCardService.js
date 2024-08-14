@@ -39,5 +39,18 @@ const saveRelCardDeck = (cardId, deckId) => {
   return fetch (url, request)
 }
 
+const saveAllCardsRel = async (listOfDtos) => {
+  const url = `${BASE_URL}/saverels`;
 
-export default {getCardsByDeckId, saveRelCardDeck}
+  const request = requestObj;
+
+  request.body = JSON.stringify(listOfDtos);
+
+
+  console.log("Fazendo o request do rels com o body: ",request)
+
+  return fetch (url, request);
+}
+
+
+export default {getCardsByDeckId, saveRelCardDeck, saveAllCardsRel}

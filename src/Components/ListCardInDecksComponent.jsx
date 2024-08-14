@@ -39,6 +39,7 @@ function ListCardInDecksComponent({card, menuSession, change, setMenuSession, se
         onClick={handleRemove}>
             <div className='w-3/4'>{card.tittle}</div>
             <div className='text-right mr-8 w-1/4'>{times}</div>
+            <div></div>
             {/* <div>screen: {card.screen}</div> */}
         </div>
     )
