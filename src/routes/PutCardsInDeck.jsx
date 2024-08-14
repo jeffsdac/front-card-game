@@ -58,17 +58,17 @@ function PutCardsInDeck() {
     }, [pageUpdate] )
 
     const handleSaveCardsOnDeck = async () => {
-        cardInDeckData
-        .map( async (card) => {
-            setIsLoading(true);
-            const resp = await RelDeckCardService.saveRelCardDeck(card.idCard, deckId);
-            console.log("Salvando card resposta: " + resp.status);
-            setIsLoading(false);
-            setPageUpdate(true);
-            setCardInDeckData([]);
-            toast("Seus cards novos foram salvos.");
-        })
+        setIsLoading(true);
+        const results = await Promise.all(
+            menuSession.map( async (c) => {
+
+            })
+        )
     }
+
+    const saveAnRel = async (c) => {
+        
+    };
 
     return (
             <div className="bg-gradient-to-br from-[#020419] via-[#000318] to-[#020419] min-h-screen flex pb-4 overflow-auto relative">
