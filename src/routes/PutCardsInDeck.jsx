@@ -23,7 +23,8 @@ function PutCardsInDeck() {
     const [menuSession, setMenuSession] = useState([]);
     const [updateMenu, setUpdateMenu] = useState(false);
     const navigate = useNavigate();
-
+    const [save, setSave] = useState(false);
+    const [responseInSaved, setResponseInSaved ] = useState(-1);
 
 
 
@@ -40,6 +41,12 @@ function PutCardsInDeck() {
         getCards();
         setPageUpdate(false);
     }, [pageUpdate]  )
+
+    useEffect( () => {
+        if (responseInSaved === 200){
+            setSave(true);
+        }
+    },[responseInSaved] ) 
 
     useEffect( () => {
         const getCardsInDeck = async () => {
@@ -66,6 +73,8 @@ function PutCardsInDeck() {
         console.log("A resposta para salvar os cards foi: " + resp.status);
         setPageUpdate(true);
         setMenuSession([]);
+        setResponseInSaved(resp.status);
+
     }
 
     const getArrayOfDtos = () => {
@@ -89,6 +98,16 @@ function PutCardsInDeck() {
 
     return (
             <div className="bg-gradient-to-br from-[#020419] via-[#000318] to-[#020419] min-h-screen flex pb-4 overflow-auto relative">
+                    
+                    { save &&
+                    <div className='absolute w-full h-screen flex items-center justify-center bg-preto-transparente z-40'>
+                        <div className='w-2/4 p-2 bg-gradient-to-br from-[#020419] via-[#000318] to-[#020419]'>
+                                <p className='text-center text-xl font-bold py-8'>Cards salvos com sucesso</p>
+                                <div className='bg-green-600 p-3 mx-24 my-8 text-center font-bold text-xl hover:bg-green-900 cursor-pointer'
+                                onClick={()=> navigate("/inicio")}>OK</div>
+                        </div>
+                    </div>
+                    }
                 <div className='absolute bg-red-600 top-2 left-2 text-4xl p-4 hover:bg-slate-600 cursor-pointer bg-transparent' 
                 onClick={ () => navigate("/inicio")}>←</div>
                 <div className='w-3/4 '>
