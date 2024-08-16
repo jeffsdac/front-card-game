@@ -52,5 +52,12 @@ const saveAllCardsRel = async (listOfDtos) => {
   return fetch (url, request);
 }
 
+const minusOneQtd = async (id) => {
+  const url = `${BASE_URL}/removeoneqtd/${id}`;
+  const request = {...requestObj, method : "PATCH"};
+  
+  return fetch (url, request);
+}
 
-export default {getCardsByDeckId, saveRelCardDeck, saveAllCardsRel}
+
+export default {getCardsByDeckId, saveRelCardDeck, saveAllCardsRel, minusOneQtd}

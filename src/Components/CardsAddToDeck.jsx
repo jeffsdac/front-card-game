@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 function CardsAddToDeck({cardInfo, setCardData, cardData,cardsAlreadyInDeck, setMenuSession, 
-    menuSession, updateMenu, setUpdateMenu}) {
+    menuSession, updateMenu, setUpdateMenu, updateScreen, setUpdateScreen}) {
 
     const [imgUrl, setImgUrl] = useState('');
     const [show, setShow] = useState(true);
@@ -57,13 +57,15 @@ function CardsAddToDeck({cardInfo, setCardData, cardData,cardsAlreadyInDeck, set
             setShow(true);
             setImgUrl(`data:image/png;base64,${cardInfo.art}`)
             defineScreen(0);
+            setUpdateScreen(false);
             return;
         }
         const tms = times[0].qtd;
-        defineScreen(2 - tms);
+        tms == 0 ? defineScreen(0) : defineScreen(2 - tms);
         tms < 2 ? setShow(true) : setShow(false);
         setImgUrl(`data:image/png;base64,${cardInfo.art}`)
-    }, [] )
+        setUpdateScreen(false);
+    }, [updateScreen] )
 
     const defineScreen = (value) =>{
         setcardMenuSession({
@@ -72,13 +74,6 @@ function CardsAddToDeck({cardInfo, setCardData, cardData,cardsAlreadyInDeck, set
         })
     }
 
-    const addOneScreen = () => {
-        const screenValue = cardMenuSession.screen;
-        setcardMenuSession({
-            ...cardMenuSession,
-            screen: screenValue + 1
-        })
-    }
 
     const removeOneScreen = async () =>{
         if (cardMenuSession.menu > 3){

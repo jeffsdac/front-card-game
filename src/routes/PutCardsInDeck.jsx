@@ -25,6 +25,7 @@ function PutCardsInDeck() {
     const navigate = useNavigate();
     const [save, setSave] = useState(false);
     const [responseInSaved, setResponseInSaved ] = useState(-1);
+    const [updateScreen, setUpdateScreen] = useState(false);
 
 
 
@@ -137,6 +138,8 @@ function PutCardsInDeck() {
                                     setMenuSession={setMenuSession}
                                     updateMenu={updateMenu}
                                     setUpdateMenu={setUpdateMenu}
+                                    updateScreen={updateScreen}
+                                    setUpdateScreen={setUpdateScreen}
                                 />
                             ))
                         }
@@ -151,6 +154,8 @@ function PutCardsInDeck() {
                                 <PutCardMenuItem 
                                 key={key} 
                                 card={card}
+                                cardsAlreadyInDeck={cardsAlreadyInDeck}
+                                setUpdateScreen={setUpdateScreen}
                                 />
                             ))
                         }
