@@ -6,22 +6,24 @@ O projeto deck card é um projeto para baseado em jogos como "Hearthstone" e "Ma
 - Como rodar?
 
 ## Sobre o projeto
-O projeto possui dois repesitórios principais, sendo um esse, responsável do frontEnd, feito em Vite, para rodar basta ter o node.js instalado.
+O projeto possui dois repesitórios principais, esse é um deles, representando o front end da minha aplicação.
 
 
-Há também o repositorio do backend: CLIQUE AQUI PARA ACESSAR E VER DETALHES SOBRE.
+Há também o repositorio do backend: [CLIQUE AQUI PARA ACESSAR](https://github.com/jeffsdac/card-game-back-end).
 
 
 ## Como rodar ?
-Apenas um pequeno adendo antes de começar, o projeto está rodando em deploy, basta clicar aqui para acessa o projeto. Se mesmo assim você queira rodar em localHost aqui vai o tutorial.
+- AINDA EM DESENVOLVIMENTO
 
 ### Pré-requisitos
 - NodeJS instalado na sua máquina, ou Docker instalado na sua máquina
 
 ### Com Docker:
+- AINDA EM DESENVOLVIMENTO
 - Basta fazer a imagem do Docker.
 
 ### Com Node:
+- AINDA EM DESENVOLVIMENTO
 - Rode os comandos
 
 
@@ -29,4 +31,5 @@ Apenas um pequeno adendo antes de começar, o projeto está rodando em deploy, b
 
 
 ## Documentação
+- AINDA EM DESENVOLVIMENTO
 A documentaçao da API está presente no repositório do BackEnd tanto no github, quanto no Swagger.
