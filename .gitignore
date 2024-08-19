@@ -27,3 +27,4 @@ dist-ssr
 *.jpg 
 *.png
 midias/
+*.txt
