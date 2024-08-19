@@ -26,7 +26,7 @@ function MenuInicial() {
       if (user === ""){
         localUser = localStorage.getItem('username');
       }
-      const resp = await fetch (`http://localhost:8080/api/deck/user/${localUser}`);
+      const resp = await DeckService.getByUsername(localUser);
       const body = await resp.json();
       setDecksData(body);
     }

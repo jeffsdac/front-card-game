@@ -26,6 +26,7 @@ function Home() {
       console.log("RESP 200");
       navigate("/inicio");
       setToken(responseBody.acessToken);
+      localStorage.setItem('token', responseBody.acessToken);
       localStorage.setItem('username', username);
       setUser(username);
     }
