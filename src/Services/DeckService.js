@@ -49,7 +49,6 @@ const registerByUsername = (username, deckName, imageId) => {
 
 const updateById = async (id, imageId, deckName) => {
     const url = `${BASE_URL}/${id}`;
-
     const dto = {
         "imageId": imageId,
         "deckName": deckName
@@ -58,7 +57,7 @@ const updateById = async (id, imageId, deckName) => {
     const request = getRequestWithToken(token);
     request.method="PATCH";
     request.body = JSON.stringify(dto);
-
+    console.log(request);
     return fetch(url, request);
 }
 

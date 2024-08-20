@@ -54,7 +54,7 @@ function EditDeck({toggleEdit, deck, setAttPage, setDecksData}) {
 
 
       const getByUsername = async () => {
-        const resp = await fetch (`http://localhost:8080/api/deck/user/${user}`);
+        const resp = await DeckService.getByUsername(user);
         const body = await resp.json();
         setDecksData(body);
       }
