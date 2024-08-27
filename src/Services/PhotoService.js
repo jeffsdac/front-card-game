@@ -1,12 +1,13 @@
+import getToken from "./GetToken";
 const BASE_URL = "http://localhost:8080/api/arts";
-const token = localStorage.getItem('token');
 
 
-const getRequestWithToken = (authToken) => {
+const getRequestWithToken = () => {
+    const acessToken = getToken();
     return {
         method:"GET",
         headers: {
-            'Authorization': `Bearer ${authToken}`,
+            'Authorization': `Bearer ${acessToken}`,
             'Content-Type': 'application/json'
         }
     }
@@ -22,15 +23,15 @@ const uploadArt = async (base64img, extension, typeArt) => {
     };
 
     const body = JSON.stringify(art);
-    const requestObj = getRequestWithToken(token);
-    requestObj.body = body;;
+    const requestObj = getRequestWithToken();
+    requestObj.body = body;
     requestObj.method = "POST";
 
     return fetch(url, requestObj)
 }
 
 const getArtById = async (id) => {
-    const request = getRequestWithToken(token);
+    const request = getRequestWithToken();
 
     const url = `${BASE_URL}/${id}`
 
@@ -39,7 +40,8 @@ const getArtById = async (id) => {
 
 // URL EXAMPLE: http://localhost:8080/api/arts/type?typeArt=BACKGROUNDDECK
 const getArtByType = async (typeImg) => {
-    const request = getRequestWithToken(token);
+    const request = getRequestWithToken();
+    console.log("request é: " , request)
     const url = `${BASE_URL}/type?typeArt=${typeImg}`
     return fetch (url, request);
 }

@@ -1,29 +1,20 @@
+import getToken from "./GetToken";
 const BASE_URL = "http://localhost:8080/api/deck";
-const token = localStorage.getItem('token');
 
-// const requestObj = {
-//     method:"POST",
-//     body: "",
-//     headers: {
-//         "Content-Type": "application/json",
-//     }
-// }
-
-const getRequestWithToken = (authToken) => {
+const getRequestWithToken = () => {
+    const acessToken = getToken();
     return {
         method:"GET",
         headers: {
-            'Authorization': `Bearer ${authToken}`,
+            'Authorization': `Bearer ${acessToken}`,
             'Content-Type': 'application/json'
         }
     }
 }
 
-
-
 const removeById = (deckId) => {
     const url = `${BASE_URL}/${deckId}`
-    const request = getRequestWithToken(token);
+    const request = getRequestWithToken();
     request.method = "DELETE";
     return fetch(url, request);
 }
@@ -32,7 +23,7 @@ const removeById = (deckId) => {
 const registerByUsername = (username, deckName, imageId) => {
     const url = `${BASE_URL}/register`;
     
-    const request = getRequestWithToken(token);
+    const request = getRequestWithToken();
     request.method = "POST"
 
     const body = {
@@ -43,7 +34,7 @@ const registerByUsername = (username, deckName, imageId) => {
 
     request.body = JSON.stringify(body);
 
-    console.log(request.body);
+
     return fetch (url, request);
 }
 
@@ -54,15 +45,14 @@ const updateById = async (id, imageId, deckName) => {
         "deckName": deckName
     }
     
-    const request = getRequestWithToken(token);
+    const request = getRequestWithToken();
     request.method="PATCH";
     request.body = JSON.stringify(dto);
-    console.log(request);
     return fetch(url, request);
 }
 
 const getByUsername = async (username) => {
-    const request = getRequestWithToken(token);
+    const request = getRequestWithToken();
     return fetch (`http://localhost:8080/api/deck/user/${username}`, request);
 }
 

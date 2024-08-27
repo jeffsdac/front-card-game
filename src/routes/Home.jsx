@@ -24,10 +24,10 @@ function Home() {
     console.log(codeResponse);
     if (codeResponse === 200){
       console.log("RESP 200");
-      navigate("/inicio");
       setToken(responseBody.acessToken);
       localStorage.setItem('token', responseBody.acessToken);
       localStorage.setItem('username', username);
+      navigate("/inicio");
       setUser(username);
     }
     if (codeResponse === 401){
@@ -41,7 +41,11 @@ function Home() {
 
   useEffect ( () => {
     const storedUser = localStorage.getItem('username');
-    if (storedUser !== "null" && !(storedUser.length === 0)){
+    if (storedUser === null){
+      navigate("/")
+    }
+
+    if(storedUser !== "null" && !(storedUser.length === 0)){
       console.log("MUDANDO PARA INICIO")
       navigate("/inicio");
     }
@@ -58,6 +62,10 @@ function Home() {
   const toggleIncorrect = () => {
     setIsIncorrect( isIncorrect ? false : true);
   };
+
+  function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
   
 
   return (

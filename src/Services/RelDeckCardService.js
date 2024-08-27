@@ -1,23 +1,21 @@
+import getToken from "./GetToken"
 const BASE_URL = "http://localhost:8080/api/rel"
 
-const requestObj = {
-    method:"POST",
-    body: "",
-    headers: {
-        "Content-Type": "application/json",
-    },
-  mode: 'cors',
+const getRequestWithToken = () => {
+  const acessToken = getToken();
+  return {
+      method:"GET",
+      headers: {
+          'Authorization': `Bearer ${acessToken}`,
+          'Content-Type': 'application/json'
+      }
+  }
 }
 
 const getCardsByDeckId = async (deckId) => {
     const url = `${BASE_URL}/justid/${deckId}`
 
-    const request = {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        mode: 'cors' 
-      }
+    const request = getRequestWithToken();
 
     return fetch(url, request)
 }
@@ -28,11 +26,9 @@ const saveRelCardDeck = (cardId, deckId) => {
   const body = {
     deckId: deckId,
     cardId: cardId
-  }
+  };
 
-  const request = requestObj;
-
-  request.body = JSON.stringify(body);
+  const request = {...getRequestWithToken(), method: "POST", body: JSON.stringify(body) }
 
   console.log("Fazendo o request do rel com o body: ",request)
 
@@ -42,10 +38,8 @@ const saveRelCardDeck = (cardId, deckId) => {
 const saveAllCardsRel = async (listOfDtos) => {
   const url = `${BASE_URL}/saverels`;
 
-  const request = requestObj;
-
+  const request = {...getRequestWithToken(), method: "POST"}
   request.body = JSON.stringify(listOfDtos);
-
 
   console.log("Fazendo o request do rels com o body: ",request)
 
@@ -54,6 +48,7 @@ const saveAllCardsRel = async (listOfDtos) => {
 
 const minusOneQtd = async (id) => {
   const url = `${BASE_URL}/removeoneqtd/${id}`;
+  const requestObj = getRequestWithToken();
   const request = {...requestObj, method : "PATCH"};
   
   return fetch (url, request);

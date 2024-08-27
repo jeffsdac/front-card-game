@@ -8,7 +8,7 @@ import PhotoService from '../Services/PhotoService.js';
 
 const ArtSelectionMenu = ({toggleActive, setAttPage}) => {
 
-    const {token, user } = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
 
     const [imageData, setImageData] = useState([]);
     const [selectedId, setSelectedId] = useState(1);
